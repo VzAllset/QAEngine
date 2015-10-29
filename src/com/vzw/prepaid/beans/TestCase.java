@@ -12,7 +12,7 @@ public class TestCase
 	Date lastUpdatedDate;
 	String createdUserId;
 	String lastUpdateUserId;
-	List<Flow> flow;
+	List<Flow> flows;
 	public int getTestCaseId() {
 		return testCaseId;
 	}
@@ -56,11 +56,12 @@ public class TestCase
 	public void setLastUpdateUserId(String lastUpdateUserId) {
 		this.lastUpdateUserId = lastUpdateUserId;
 	}
-	public List<Flow> getFlow() {
-		return flow;
+	
+	public List<Flow> getFlows() {
+		return flows;
 	}
-	public void setFlow(List<Flow> flow) {
-		this.flow = flow;
+	public void setFlows(List<Flow> flows) {
+		this.flows = flows;
 	}
 	@Override
 	public String toString() {
@@ -68,7 +69,7 @@ public class TestCase
 				+ testCaseName + ", testCaseDesc=" + testCaseDesc
 				+ ", createdDate=" + createdDate + ", lastUpdatedDate="
 				+ lastUpdatedDate + ", createdUserId=" + createdUserId
-				+ ", lastUpdateUserId=" + lastUpdateUserId + ", flow=" + flow
+				+ ", lastUpdateUserId=" + lastUpdateUserId + ", flows=" + flows
 				+ "]";
 	}
 	
