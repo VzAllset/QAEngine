@@ -17,7 +17,7 @@ public class FillActionProcessor implements ActionExecutor {
 	private WebDriver driver;
 	
 	
-	public FillActionProcessor(Data data, Object object, WebDriver driver) {
+	public FillActionProcessor(Object object, Data data, WebDriver driver) {
 		
 		this.data = data;
 		this.object = object;

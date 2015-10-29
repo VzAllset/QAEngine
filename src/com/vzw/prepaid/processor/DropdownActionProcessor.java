@@ -19,7 +19,7 @@ public class DropdownActionProcessor implements ActionExecutor {
 	private WebDriver driver;
 	
 	
-	public DropdownActionProcessor(Data data, Object object, WebDriver driver) {
+	public DropdownActionProcessor(Object object, Data data, WebDriver driver) {
 		this.data = data;
 		this.object = object;
 		this.driver = driver;

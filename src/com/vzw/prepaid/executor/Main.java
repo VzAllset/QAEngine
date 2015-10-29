@@ -2,11 +2,13 @@ package com.vzw.prepaid.executor;
 
 import org.apache.log4j.Logger;
 
+import com.vzw.prepaid.beans.TestCase;
 import com.vzw.prepaid.configuration.DatasourceConfigurator;
 import com.vzw.prepaid.configuration.GenerateTestObject;
 import com.vzw.prepaid.configuration.GenericConfigurator;
 import com.vzw.prepaid.configuration.LogConfigurator;
 import com.vzw.prepaid.configuration.PropertyConfigurator;
+import com.vzw.prepaid.executors.TestCaseExecutor;
 import com.vzw.prepaid.factory.RequestFactory;
 
 public class Main {
@@ -19,7 +21,7 @@ public class Main {
 		GenericConfigurator logconfig = null;
 		PropertyConfigurator propconfig = null;
 		GenerateTestObject requestObject = null;
-		Testcase test = null;
+		TestCase test = null;
 		TestCaseExecutor executor = null;
 		
 		try {
