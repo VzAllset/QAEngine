@@ -20,7 +20,7 @@ public class CompareDataProcessor implements TestExecutor{
 		this.object = object;
 		this.data = data;
 		this.driver = driver;
-		 
+		
 	}
 	
 	@Override
