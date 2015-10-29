@@ -28,13 +28,10 @@ public class Main {
 			
 			logconfig = new LogConfigurator();
 			logconfig.configure();
-			
 			propconfig = new PropertyConfigurator();
 			propconfig.configure();
-			
 			dsconfig = new DatasourceConfigurator();
 			dsconfig.configure();
-			
 			logger.info("Configuration Loaded!!!");
 			
 			requestObject = RequestFactory.getRequest(PropertyConfigurator.props.getProperty("REQUEST_TYPE"));
@@ -47,7 +44,7 @@ public class Main {
 		
 		}catch (Exception e ){
 			
-			logger.error("Execption in Main block");
+			logger.error("Execption in Main block ",e);
 		}finally{
 		
 			if (dsconfig != null ){

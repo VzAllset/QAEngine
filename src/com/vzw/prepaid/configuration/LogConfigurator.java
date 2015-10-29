@@ -11,7 +11,7 @@ public class LogConfigurator implements GenericConfigurator {
 
 	@Override
 	public void configure() {
-		PropertyConfigurator.configure(ConfigurationConstants.configPath+ConfigurationConstants.logFileName);		
+		PropertyConfigurator.configure(LogConfigurator.class.getClassLoader().getResource("log4j.properties" ));		
 	}
 
 	@Override

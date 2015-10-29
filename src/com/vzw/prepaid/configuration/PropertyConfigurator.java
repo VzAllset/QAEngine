@@ -24,10 +24,10 @@ public class PropertyConfigurator implements GenericConfigurator
 	public void configure() {
 		this.init();
 		props = new Properties();
-		InputStream in = null;
+		InputStream in = LogConfigurator.class.getClassLoader().getResourceAsStream("qa.properties");
 		try
 		{
-			in = new FileInputStream(file);
+			//in = new FileInputStream(file);
 			props.clear();
 			props.load(in);
 			in.close();
