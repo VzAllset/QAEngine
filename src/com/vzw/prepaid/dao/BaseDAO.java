@@ -2,6 +2,7 @@ package com.vzw.prepaid.dao;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import org.apache.commons.dbcp.BasicDataSource;
@@ -53,5 +54,21 @@ public class BaseDAO {
 		closeConnection(conn);
 	}
 	
+	public void close(PreparedStatement cs, Connection conn) {
+		closePreparedStatement(cs);
+		closeConnection(conn);
+	}
+	
+	public void closePreparedStatement(PreparedStatement cs ) {
+		if( cs != null ) {
+			try {
+				cs.close();
+				cs = null;
+			}
+			catch ( SQLException err) {
+				log.error("Error during closing Prepared Statement!" + err);
+			}	
+		}
+	}
 
 }

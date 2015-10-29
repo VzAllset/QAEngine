@@ -8,12 +8,15 @@ import com.vzw.prepaid.beans.Flow;
 import com.vzw.prepaid.beans.Step;
 import com.vzw.prepaid.beans.Object;
 import com.vzw.prepaid.beans.TestCase;
+import com.vzw.prepaid.dao.ProcessorDAO;
+import com.vzw.prepaid.dao.ProcessorDAOImpl;
 import com.vzw.prepaid.exceptions.StepException;
 import com.vzw.prepaid.factory.ActionFactory;
+import com.vzw.prepaid.processor.ActionExecutor;
 
 public class StepExecutor implements Executor
 {
-	static Logger log = Logger.getLogger(StepExecutor.class)
+	static Logger log = Logger.getLogger(StepExecutor.class);
 	
 	private Step step;
 	private Data data;
@@ -41,14 +44,14 @@ public class StepExecutor implements Executor
 		ActionExecutor executor = ActionFactory.getActionProcessor(action, object, data, driver, step, flow);
 		try
 		{
-			executor.runAc
+			executor.runAction();
 		}
 		catch(Exception e)
 		{
 			throw new StepException(step,e);
 		}
 		processorDAO = new ProcessorDAOImpl();
-		processorDAO.insertStepStatus(testCase.getTestCaseId());
+		processorDAO.insertStepStatus(testCase.getTestCaseId(),flow.getFlowId(),step.getStepId(),"SUCCESS");
 	}
 
 }

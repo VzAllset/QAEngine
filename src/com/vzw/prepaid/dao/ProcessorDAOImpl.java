@@ -59,7 +59,7 @@ public class ProcessorDAOImpl extends BaseDAO implements ProcessorDAO{
 			cstmt.setString("P_DEP_ID", Thread.currentThread().getName());
 			cstmt.setInt("P_REF_FLOW_ID", refFlowId);
 			cstmt.setInt("P_REF_STEP_ID", refStepId);
-			cstmt.setString("P_CAPTURED_VALUE", OracleTypes.VARCHAR);
+			cstmt.registerOutParameter("P_CAPTURED_VALUE", java.sql.Types.VARCHAR);
 			cstmt.execute();
 			capturedValue=cstmt.getString("P_CAPTURED_VALUE");
 		}

@@ -17,6 +17,8 @@ import com.vzw.prepaid.beans.TestResult;
 import com.vzw.prepaid.commonUtils.Utils;
 import com.vzw.prepaid.comparators.FlowComparator;
 import com.vzw.prepaid.configuration.PropertyConfigurator;
+import com.vzw.prepaid.dao.ProcessorDAO;
+import com.vzw.prepaid.dao.ProcessorDAOImpl;
 import com.vzw.prepaid.exceptions.StepException;
 import com.vzw.prepaid.factory.BrowserFactory;
 import com.vzw.prepaid.factory.TestFactory;
@@ -86,7 +88,7 @@ public class TestCaseExecutor implements Executor
 				}
 				File file = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 				processorDAO.insertErrorLog(Thread.currentThread().getName(),ExceptionUtils.getStackTrace(se),new FileInputStream(file));
-				Utils.closeDriver(driver)
+				Utils.closeDriver(driver);
 				throw se;
 			}
 			catch(Exception e)
