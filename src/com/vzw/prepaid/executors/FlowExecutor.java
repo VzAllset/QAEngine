@@ -41,15 +41,15 @@ public class FlowExecutor implements Executor
 					ProcessorDAO dao = new ProcessorDAOImpl();
 					capturedData = dao.getCapturedData(step.getRefFlowId(),step.getRefStepId());
 					step.getData().setDataValue(capturedData);
-					StepExecutor stepExecutor = new StepExecutor(step, step.getObject(),step.getData(),driver,flow,testCase);
-					try
-					{
-						stepExecutor.execute();
-					}
-					catch(StepException se)
-					{
-						throw se;
-					}
+				}
+				StepExecutor stepExecutor = new StepExecutor(step, step.getObject(),step.getData(),driver,flow,testCase);
+				try
+				{
+					stepExecutor.execute();
+				}
+				catch(StepException se)
+				{
+					throw se;
 				}
 			}
 		}

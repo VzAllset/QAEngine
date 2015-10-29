@@ -39,6 +39,7 @@ public class TestCaseExecutor implements Executor
 		this.testCase = testCase;
 		this.newBrowserFlag = needNewBrowser;
 		Thread.currentThread().setName(Utils.getDate());
+		System.out.println("Thread name is "+Utils.getDate());
 	}
 
 	@Override
@@ -99,7 +100,7 @@ public class TestCaseExecutor implements Executor
 			}
 			logger.info("Exection of flow >>"+flow.toString()+" completed !!");
 		}
-		Utils.closeDriver(driver);
+		//Utils.closeDriver(driver);
 		logger.info("Execution of test case >> "+testCase.toString()+" completed !!");
 	}
 	

@@ -28,19 +28,19 @@ public class DatabaseRequestDAOImpl extends BaseDAO implements
 		log.info("Input: " + testCaseId);
 		Connection conn = this.getConnection(DatasourceConfigurator.ds);
 		CallableStatement cstmt = null;
-		String query = "{call GET_TEST_CASE(:P_TEST_CASE_ID,:P_TEST_CASE_NAME,:P_TEST_CASE_DESC,:P_CREATED_DT,:P_LAST_UPDATED_DT,:P_CREATED_USER_ID,:P_LAST_UPDATED_USER_ID)}";
+		String query = "{call GET_TEST_CASE(?,?,?,?,?,?,?)}";
 		TestCase testCase = null;
 		
 		try {
 			cstmt = conn.prepareCall(query);
-			cstmt.setInt("P_TEST_CASE_ID", testCaseId);
-			cstmt.registerOutParameter("P_TEST_CASE_ID", java.sql.Types.NUMERIC);
-			cstmt.registerOutParameter("P_TEST_CASE_NAME", java.sql.Types.VARCHAR);
-			cstmt.registerOutParameter("P_TEST_CASE_DESC", java.sql.Types.VARCHAR);
-			cstmt.registerOutParameter("P_CREATED_DT", java.sql.Types.DATE);
-			cstmt.registerOutParameter("P_LAST_UPDATED_DT", java.sql.Types.DATE);
-			cstmt.registerOutParameter("P_CREATED_USER_ID", java.sql.Types.VARCHAR);
-			cstmt.registerOutParameter("P_LAST_UPDATED_USER_ID", java.sql.Types.VARCHAR);
+			cstmt.setInt(1, testCaseId);
+			cstmt.registerOutParameter(1, java.sql.Types.NUMERIC);
+			cstmt.registerOutParameter(2, java.sql.Types.VARCHAR);
+			cstmt.registerOutParameter(3, java.sql.Types.VARCHAR);
+			cstmt.registerOutParameter(4, java.sql.Types.DATE);
+			cstmt.registerOutParameter(5, java.sql.Types.DATE);
+			cstmt.registerOutParameter(6, java.sql.Types.VARCHAR);
+			cstmt.registerOutParameter(7, java.sql.Types.VARCHAR);
 			cstmt.execute();
 			SetBeansFromDB setter = new SetBeansFromDB();
 			testCase = setter.returnTestCase(cstmt, testCase);
@@ -68,10 +68,10 @@ public class DatabaseRequestDAOImpl extends BaseDAO implements
 		ResultSet rs = null;
 		Flow flow = null;
 		
-		String query = "{call GET_FLOWS(:P_TEST_CASE_ID)}";
+		String query = "{call GET_FLOWS(?)}";
 		try {
 			cstmt = conn.prepareCall(query);
-			cstmt.setInt("P_TEST_CASE_ID", testCase.getTestCaseId());
+			cstmt.setInt(1, testCase.getTestCaseId());
 			boolean hasResultSet =  cstmt.execute();
 		      if( hasResultSet ){
 		    	  flows = new ArrayList<Flow>();
@@ -173,7 +173,7 @@ public class DatabaseRequestDAOImpl extends BaseDAO implements
 			SetBeansFromDB setter = new SetBeansFromDB();
 			step	 = setter.returnStep(cstmt, step);
 			/* get and set object */
-			step.setObject(this.getObject(this.getDataId(stepId)));
+			step.setObject(this.getObject(this.getObjectId(stepId)));
 			/* get and set Data */
 			step.setData(this.getData(this.getDataId(stepId)));
 		}

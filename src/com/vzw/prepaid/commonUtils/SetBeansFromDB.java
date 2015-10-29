@@ -13,13 +13,13 @@ public class SetBeansFromDB
 	public TestCase returnTestCase(CallableStatement cstmt, TestCase testCase) throws SQLException
 	{
 		testCase = new TestCase();
-		testCase.setTestCaseId(cstmt.getInt("P_TEST_CASE_ID"));
-		testCase.setTestCaseName(cstmt.getString("P_TEST_CASE_NAME"));
-		testCase.setTestCaseDesc(cstmt.getString("P_TEST_CASE_DESC"));
-		testCase.setCreatedDate(cstmt.getDate("P_CREATED_DT"));
-		testCase.setLastUpdatedDate(cstmt.getDate("P_LAST_UPDATED_DT"));
-		testCase.setCreatedDate(cstmt.getDate("P_CREATED_USER_ID"));
-		testCase.setLastUpdateUserId(cstmt.getString("P_LAST_UPDATED_USER_ID"));
+		testCase.setTestCaseId(cstmt.getInt(1));
+		testCase.setTestCaseName(cstmt.getString(2));
+		testCase.setTestCaseDesc(cstmt.getString(3));
+		testCase.setCreatedDate(cstmt.getDate(4));
+		testCase.setLastUpdatedDate(cstmt.getDate(5));
+		testCase.setCreatedUserId(cstmt.getString(6));
+		testCase.setLastUpdateUserId(cstmt.getString(7));
 		return testCase;
 	}
 	

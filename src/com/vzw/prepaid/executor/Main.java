@@ -36,7 +36,7 @@ public class Main {
 			
 			requestObject = RequestFactory.getRequest(PropertyConfigurator.props.getProperty("REQUEST_TYPE"));
 			
-			test = requestObject.constructTestObject(3);
+			test = requestObject.constructTestObject(1);
 			
 			executor = new TestCaseExecutor(test,true);
 			executor.execute();

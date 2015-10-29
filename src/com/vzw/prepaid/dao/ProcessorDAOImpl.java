@@ -81,16 +81,16 @@ public class ProcessorDAOImpl extends BaseDAO implements ProcessorDAO{
 		log.info(" Test Case ID :"+ testCaseId + "Flow ID" + flowId + " Step ID :" + stepId + " status :" + status );
 		Connection conn = this.getConnection(DatasourceConfigurator.ds);
 		CallableStatement cstmt = null;
-		String query = "{ call QA_PKG.INSERT_STEP_RESULT( :P_THREAD_ID, P_TEST_CASE_ID, :P_FLOW_ID, :P_STEP_ID , :P_STATUS )}";
+		String query = "{ call INSERT_STEP_RESULT( ?, ?, ?, ? , ? )}";
 		
 		
 		try{
 			cstmt = conn.prepareCall(query);
-			cstmt.setString("P_THREAD_ID", Thread.currentThread().getName());
-			cstmt.setInt("P_TEST_CASE_ID", testCaseId);
-			cstmt.setInt("P_FLOW_ID", flowId);
-			cstmt.setInt("P_STEP_ID", stepId);
-			cstmt.setString("P_STATUS", status);
+			cstmt.setString(1, Thread.currentThread().getName());
+			cstmt.setInt(2, testCaseId);
+			cstmt.setInt(3, flowId);
+			cstmt.setInt(4, stepId);
+			cstmt.setString(5, status);
 			cstmt.execute();
 			
 		}
@@ -117,7 +117,7 @@ public class ProcessorDAOImpl extends BaseDAO implements ProcessorDAO{
 		log.info(" Inside insertErrorLog(). Input parameters is threadId:" + threadId );
 		Connection conn = this.getConnection(DatasourceConfigurator.ds);
 		PreparedStatement pstmt = null;
-		String query = "{ call QA_PKG.INSERT_FAILURE(? , ? , ? )}";
+		String query = "{ call INSERT_FAILURE(? , ? , ? )}";
 		
 		
 		try{
