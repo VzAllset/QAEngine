@@ -26,30 +26,30 @@ public class SetBeansFromDB
 	public Data returnData(CallableStatement cstmt, Data data) throws SQLException
 	{
 		data = new Data();
-		data.setDataId(cstmt.getInt("P_DATA_ID"));
-		data.setDataName(cstmt.getString("P_DATA_NAME"));
-		data.setDataValue(cstmt.getString("P_DATA_VALUE"));
-		data.setDataDesc(cstmt.getString("P_DATA_DESC"));
+		data.setDataId(cstmt.getInt(1));
+		data.setDataName(cstmt.getString(2));
+		data.setDataValue(cstmt.getString(3));
+		data.setDataDesc(cstmt.getString(4));
 		return data;
 	}
 	
 	public Object returnObject (CallableStatement cstmt, Object object) throws SQLException
 	{
 		object = new Object();
-		object.setObjectId(cstmt.getInt("P_OBJECT_ID"));
-		object.setObjectName(cstmt.getString("P_OBJECT_NAME"));
-		object.setObjectXPath(cstmt.getString("P_OBJECT_XPATH"));
-		object.setObjectDesc(cstmt.getString("P_OBJECT_DESC"));
+		object.setObjectId(cstmt.getInt(1));
+		object.setObjectName(cstmt.getString(2));
+		object.setObjectXPath(cstmt.getString(3));
+		object.setObjectDesc(cstmt.getString(4));
 		return object;
 	}
 	
 	public Step returnStep(CallableStatement cstmt, Step step) throws SQLException
 	{
 		step = new Step();
-		step.setStepId(cstmt.getInt("P_STEP_ID"));
-		step.setStepName(cstmt.getString("P_STEP_NAME"));
-		step.setAction(cstmt.getString("P_ACTION"));
-		step.setStepDesc(cstmt.getString("P_STEP_DESC"));
+		step.setStepId(cstmt.getInt(1));
+		step.setStepName(cstmt.getString(2));
+		step.setAction(cstmt.getString(3));
+		step.setStepDesc(cstmt.getString(4));
 		return step;
 	}
 }
