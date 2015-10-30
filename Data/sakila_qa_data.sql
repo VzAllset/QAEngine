@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.9, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: sakila
+-- Host: 113.128.162.200    Database: sakila
 -- ------------------------------------------------------
 -- Server version	5.7.9-log
 
@@ -37,7 +37,7 @@ CREATE TABLE `qa_data` (
 
 LOCK TABLES `qa_data` WRITE;
 /*!40000 ALTER TABLE `qa_data` DISABLE KEYS */;
-INSERT INTO `qa_data` VALUES (1,'USERNAME','maildinesh@gmail.com','username'),(2,'PASSWORD','altec12','password'),(3,'DUMMY_DATA','NULL','DUMMY');
+INSERT INTO `qa_data` VALUES (1,'USERNAME','maildinesh@gmail.com','username'),(2,'PASSWORD','altec12','password'),(3,'DUMMY_DATA','NULL','DUMMY'),(4,'APASSWORD','redroses12','apassword');
 /*!40000 ALTER TABLE `qa_data` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-10-29 10:46:59
+-- Dump completed on 2015-10-30  7:23:03

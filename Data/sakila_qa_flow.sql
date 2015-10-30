@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.9, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: sakila
+-- Host: 113.128.162.200    Database: sakila
 -- ------------------------------------------------------
 -- Server version	5.7.9-log
 
@@ -35,7 +35,7 @@ CREATE TABLE `qa_flow` (
 
 LOCK TABLES `qa_flow` WRITE;
 /*!40000 ALTER TABLE `qa_flow` DISABLE KEYS */;
-INSERT INTO `qa_flow` VALUES (1,'LOGIN_USER');
+INSERT INTO `qa_flow` VALUES (1,'LOGIN_USER'),(2,'ALOGIN');
 /*!40000 ALTER TABLE `qa_flow` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -48,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-10-29 10:46:59
+-- Dump completed on 2015-10-30  7:23:04
