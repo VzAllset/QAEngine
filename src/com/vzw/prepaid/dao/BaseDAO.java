@@ -12,7 +12,7 @@ public class BaseDAO {
 	
 	static Logger log = Logger.getLogger(BaseDAO.class);
 	
-	public Connection getConnection(BasicDataSource dataSource) {
+	public synchronized Connection getConnection(BasicDataSource dataSource) {
 		Connection connection = null;
 		
 		try {

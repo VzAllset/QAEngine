@@ -31,15 +31,16 @@ public class TestCaseExecutor implements Executor
 	
 	private TestCase testCase;
 	private boolean newBrowserFlag;
-	private static WebDriver driver = null;
+	private WebDriver driver = null;
 	private ProcessorDAO processorDAO;
 	
-	public TestCaseExecutor(TestCase testCase, boolean needNewBrowser)
+	public TestCaseExecutor(TestCase testCase, boolean needNewBrowser, WebDriver driver)
 	{
 		this.testCase = testCase;
 		this.newBrowserFlag = needNewBrowser;
 		Thread.currentThread().setName(Utils.getDate());
 		System.out.println("Thread name is "+Utils.getDate());
+		this.driver = driver;
 	}
 
 	@Override
@@ -47,12 +48,12 @@ public class TestCaseExecutor implements Executor
 		logger.info("Starting to execute the test case >> "+testCase.toString());
 		List<Flow> flows = testCase.getFlows();
 		Collections.sort(flows, new FlowComparator());
-		if(newBrowserFlag)
+		/*if(newBrowserFlag)
 		{
 			driver = BrowserFactory.getWebDriver(PropertyConfigurator.props.getProperty("BROWSER"));
 			driver.manage().timeouts().implicitlyWait(Long.parseLong(PropertyConfigurator.props.getProperty("TIMEOUT")), TimeUnit.SECONDS);
 			driver.get(PropertyConfigurator.props.getProperty("APPLICATION_URL"));
-		}
+		}*/
 		for(Flow flow:flows)
 		{
 			FlowExecutor flowExecutor = new FlowExecutor(testCase,flow,driver);

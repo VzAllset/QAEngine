@@ -3,12 +3,14 @@ package com.vzw.prepaid.executor;
 import org.apache.log4j.Logger;
 
 import com.vzw.prepaid.beans.TestCase;
+import com.vzw.prepaid.beans.TestSuite;
 import com.vzw.prepaid.configuration.DatasourceConfigurator;
 import com.vzw.prepaid.configuration.GenerateTestObject;
 import com.vzw.prepaid.configuration.GenericConfigurator;
 import com.vzw.prepaid.configuration.LogConfigurator;
 import com.vzw.prepaid.configuration.PropertyConfigurator;
 import com.vzw.prepaid.executors.TestCaseExecutor;
+import com.vzw.prepaid.executors.TestSuiteExecutor;
 import com.vzw.prepaid.factory.RequestFactory;
 
 public class Main {
@@ -22,7 +24,8 @@ public class Main {
 		PropertyConfigurator propconfig = null;
 		GenerateTestObject requestObject = null;
 		TestCase test = null;
-		TestCaseExecutor executor = null;
+		//TestCaseExecutor executor = null;
+		TestSuiteExecutor executor = null;
 		
 		try {
 			
@@ -36,9 +39,14 @@ public class Main {
 			
 			requestObject = RequestFactory.getRequest(PropertyConfigurator.props.getProperty("REQUEST_TYPE"));
 			
-			test = requestObject.constructTestObject(1);
+			//test = requestObject.constructTestObject(1);
 			
-			executor = new TestCaseExecutor(test,true);
+			TestSuite suite = requestObject.constructTestSuite(1);
+			System.out.println(suite.toString());
+			
+			/*executor = new TestCaseExecutor(test,true);
+			executor.execute();*/
+			executor = new TestSuiteExecutor(suite);
 			executor.execute();
 			
 		

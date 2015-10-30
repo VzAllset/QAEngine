@@ -3,13 +3,33 @@ package com.vzw.prepaid.commonUtils;
 import java.sql.CallableStatement;
 import java.sql.SQLException;
 
+import com.vzw.prepaid.beans.Application;
 import com.vzw.prepaid.beans.Data;
 import com.vzw.prepaid.beans.Step;
 import com.vzw.prepaid.beans.TestCase;
+import com.vzw.prepaid.beans.TestSuite;
 import com.vzw.prepaid.beans.Object;
 
 public class SetBeansFromDB 
 {
+	public TestSuite returnTestSuite(CallableStatement cstmt, TestSuite testSuite) throws SQLException
+	{
+		testSuite = new TestSuite();
+		testSuite.setTestSuiteId(cstmt.getInt(1));
+		testSuite.setTestSuiteName(cstmt.getString(2));
+		testSuite.setNeedNewBrowser(cstmt.getString(3));
+		return testSuite;
+	}
+	
+	public Application returnApplication(CallableStatement cstmt, Application app) throws SQLException
+	{
+		app = new Application();
+		app.setApplicationId(cstmt.getInt(1));
+		app.setApplicationName(cstmt.getString(2));
+		app.setApplicationUrl(cstmt.getString(3));
+		return app;
+	}
+	
 	public TestCase returnTestCase(CallableStatement cstmt, TestCase testCase) throws SQLException
 	{
 		testCase = new TestCase();

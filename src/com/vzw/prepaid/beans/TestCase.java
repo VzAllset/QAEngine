@@ -13,13 +13,15 @@ public class TestCase
 	String createdUserId;
 	String lastUpdateUserId;
 	List<Flow> flows;
+	int executionSequence;
+	String browserFlag;
+	
 	public int getTestCaseId() {
 		return testCaseId;
 	}
 	public void setTestCaseId(int testCaseId) {
 		this.testCaseId = testCaseId;
 	}
-	
 	public String getTestCaseName() {
 		return testCaseName;
 	}
@@ -63,15 +65,23 @@ public class TestCase
 	public void setFlows(List<Flow> flows) {
 		this.flows = flows;
 	}
+	public int getExecutionSequence() {
+		return executionSequence;
+	}
+	public void setExecutionSequence(int executionSequence) {
+		this.executionSequence = executionSequence;
+	}
+	public String getBrowserFlag() {
+		return browserFlag;
+	}
+	public void setBrowserFlag(String browserFlag) {
+		this.browserFlag = browserFlag;
+	}
 	@Override
 	public String toString() {
-		return "TestCase [testCaseId=" + testCaseId + ", testCaseName="
-				+ testCaseName + ", testCaseDesc=" + testCaseDesc
-				+ ", createdDate=" + createdDate + ", lastUpdatedDate="
-				+ lastUpdatedDate + ", createdUserId=" + createdUserId
-				+ ", lastUpdateUserId=" + lastUpdateUserId + ", flows=" + flows
-				+ "]";
+		return "TestCase [testCaseId=" + testCaseId + ", testCaseName=" + testCaseName + ", testCaseDesc="
+				+ testCaseDesc + ", createdDate=" + createdDate + ", lastUpdatedDate=" + lastUpdatedDate
+				+ ", createdUserId=" + createdUserId + ", lastUpdateUserId=" + lastUpdateUserId + ", flows=" + flows
+				+ ", executionSequence=" + executionSequence + ", browserFlag=" + browserFlag + "]";
 	}
-	
-	
 }

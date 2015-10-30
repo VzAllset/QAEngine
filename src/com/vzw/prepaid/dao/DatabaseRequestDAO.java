@@ -8,6 +8,7 @@ import com.vzw.prepaid.beans.Object;
 import com.vzw.prepaid.beans.Step;
 import com.vzw.prepaid.beans.TestCase;
 import com.vzw.prepaid.beans.TestResult;
+import com.vzw.prepaid.beans.TestSuite;
 
 public interface DatabaseRequestDAO {
 
@@ -21,6 +22,6 @@ public interface DatabaseRequestDAO {
 	public Flow getFlow(int flowId);
 	public List<Step> getSteps(int flowId);
 	public List<TestResult> getTestResult(int flowId);
-	
-	
+	public TestSuite getTestSuite(int testSuiteId);
+	public List<TestCase> getTestCases(TestSuite suite);
 }
