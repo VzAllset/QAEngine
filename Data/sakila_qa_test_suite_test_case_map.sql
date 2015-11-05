@@ -28,7 +28,14 @@ CREATE TABLE `qa_test_suite_test_case_map` (
   `description` varchar(100) DEFAULT NULL,
   `DEP_SUITE` decimal(10,0) DEFAULT NULL,
   `EXEC_SEQUENCE` decimal(10,0) DEFAULT NULL,
-  PRIMARY KEY (`TEST_SUITE_ID`,`TEST_CASE_ID`)
+  `TEST_SUITE_TEST_CASE_MAP_ID` decimal(10,0) NOT NULL,
+  PRIMARY KEY (`TEST_SUITE_TEST_CASE_MAP_ID`),
+  KEY `TEST_CASE_ID` (`TEST_CASE_ID`),
+  KEY `qa_test_suite_test_case_map_FK2` (`TEST_SUITE_ID`),
+  KEY `qa_test_suite_test_case_map_FK3` (`DEP_SUITE`),
+  CONSTRAINT `qa_test_suite_test_case_map_FK2` FOREIGN KEY (`TEST_SUITE_ID`) REFERENCES `qa_test_suite` (`TEST_SUITE_ID`),
+  CONSTRAINT `qa_test_suite_test_case_map_FK3` FOREIGN KEY (`DEP_SUITE`) REFERENCES `qa_test_suite` (`TEST_SUITE_ID`),
+  CONSTRAINT `qa_test_suite_test_case_map_ibfk_1` FOREIGN KEY (`TEST_CASE_ID`) REFERENCES `qa_test_case` (`TEST_CASE_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -38,7 +45,7 @@ CREATE TABLE `qa_test_suite_test_case_map` (
 
 LOCK TABLES `qa_test_suite_test_case_map` WRITE;
 /*!40000 ALTER TABLE `qa_test_suite_test_case_map` DISABLE KEYS */;
-INSERT INTO `qa_test_suite_test_case_map` VALUES (1,1,'test suite',NULL,1),(2,2,'test suite',NULL,2);
+INSERT INTO `qa_test_suite_test_case_map` VALUES (1,1,'test suite',NULL,1,1),(2,2,'test suite',NULL,2,2);
 /*!40000 ALTER TABLE `qa_test_suite_test_case_map` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-10-30  7:23:06
+-- Dump completed on 2015-11-05  8:50:37

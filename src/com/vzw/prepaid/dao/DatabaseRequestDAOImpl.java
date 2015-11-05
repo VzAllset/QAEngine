@@ -326,12 +326,12 @@ public class DatabaseRequestDAOImpl extends BaseDAO implements DatabaseRequestDA
 		    	  steps = new ArrayList<Step>();
 		            rs = cstmt.getResultSet();
 		            while (rs.next()) {
-		            	int stepId = rs.getInt(2);
+		            	int stepId = rs.getInt(3);
 		                Step step = this.getStep(stepId);
-		                step.setExecutionSequence(rs.getInt(5));
-		                step.setRefFlowId(rs.getInt(3));
-		                step.setRefStepId(rs.getInt(6));
-		                step.setRefKey(rs.getString(7));
+		                step.setExecutionSequence(rs.getInt(6));
+		                step.setRefFlowId(rs.getInt(4));
+		                step.setRefStepId(rs.getInt(7));
+		                step.setRefKey(rs.getString(8));
 		                steps.add(step);
 		                
 		            }

@@ -27,7 +27,9 @@ CREATE TABLE `qa_test_suite` (
   `TEST_SUITE_NAME` varchar(100) DEFAULT NULL,
   `APPLICATION_ID` decimal(10,0) DEFAULT NULL,
   `NEW_BROWSER` varchar(1) DEFAULT NULL,
-  PRIMARY KEY (`TEST_SUITE_ID`)
+  PRIMARY KEY (`TEST_SUITE_ID`),
+  KEY `qa_test_suite_fk1` (`APPLICATION_ID`),
+  CONSTRAINT `qa_test_suite_fk1` FOREIGN KEY (`APPLICATION_ID`) REFERENCES `application` (`APPLICATION_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -37,7 +39,7 @@ CREATE TABLE `qa_test_suite` (
 
 LOCK TABLES `qa_test_suite` WRITE;
 /*!40000 ALTER TABLE `qa_test_suite` DISABLE KEYS */;
-INSERT INTO `qa_test_suite` VALUES (1,'Test suite for Flipkart',1,'Y'),(2,'Test suite for amazon',2,'Y');
+INSERT INTO `qa_test_suite` VALUES (1,'Flipkart Smoke Test',1,'Y'),(2,'Amazon.in Regression test',2,'Y');
 /*!40000 ALTER TABLE `qa_test_suite` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-10-30  7:23:08
+-- Dump completed on 2015-11-05  8:50:38
