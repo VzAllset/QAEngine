@@ -16,6 +16,7 @@ import com.vzw.prepaid.beans.TestCase;
 import com.vzw.prepaid.beans.TestResult;
 import com.vzw.prepaid.commonUtils.Utils;
 import com.vzw.prepaid.comparators.FlowComparator;
+import com.vzw.prepaid.comparators.FlowTestResultComparator;
 import com.vzw.prepaid.configuration.PropertyConfigurator;
 import com.vzw.prepaid.dao.ProcessorDAO;
 import com.vzw.prepaid.dao.ProcessorDAOImpl;
@@ -64,6 +65,7 @@ public class TestCaseExecutor implements Executor
 				if(flow!=null && flow.getTests() != null && flow.getTests().size()>0)
 				{
 					List<TestResult> tests = flow.getTests();
+					Collections.sort(tests, new FlowTestResultComparator());
 					for(TestResult test : tests)
 					{
 						boolean result = true;

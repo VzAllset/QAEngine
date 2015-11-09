@@ -25,7 +25,7 @@ public class ExecuteAll implements Callable<HashMap<String,Object>>
 		GenerateTestObject requestObject = null;
 		TestSuite suite = null;
 		TestSuiteExecutor executor = null;
-		HashMap<String,Object> result = null;
+		HashMap<String,Object> result = new HashMap<String,Object>();
 		
 		try 
 		{
@@ -33,7 +33,6 @@ public class ExecuteAll implements Callable<HashMap<String,Object>>
 			suite = requestObject.constructTestSuite(testSuiteId);
 			executor = new TestSuiteExecutor(suite);
 			executor.execute();
-			result = new HashMap<String,Object>();
 			result.put(String.valueOf(testSuiteId), "Success");
 		}
 		catch (Exception e )

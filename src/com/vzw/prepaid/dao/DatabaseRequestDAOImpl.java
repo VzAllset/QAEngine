@@ -30,7 +30,7 @@ public class DatabaseRequestDAOImpl extends BaseDAO implements DatabaseRequestDA
 		log.info("Input: " + testSuiteId);
 		conn = this.getConnection(DatasourceConfigurator.ds);
 		CallableStatement cstmt = null;
-		String query = "{call GET_TEST_SUITE(?,?,?)}";
+		String query = "{call GET_TEST_SUITE(?,?,?,?)}";
 		TestSuite testSuite = null;
 		
 		try {
@@ -39,10 +39,11 @@ public class DatabaseRequestDAOImpl extends BaseDAO implements DatabaseRequestDA
 			cstmt.registerOutParameter(1, java.sql.Types.NUMERIC);
 			cstmt.registerOutParameter(2, java.sql.Types.VARCHAR);
 			cstmt.registerOutParameter(3, java.sql.Types.VARCHAR);
+			cstmt.registerOutParameter(4, java.sql.Types.NUMERIC);
 			cstmt.execute();
 			SetBeansFromDB setter = new SetBeansFromDB();
 			testSuite = setter.returnTestSuite(cstmt, testSuite);
-			testSuite.setApplication(this.getApplication(testSuiteId));
+			testSuite.setApplication(this.getApplication(cstmt.getInt(4)));
 			testSuite.setTestCases(this.getTestCases(testSuite));
 			
 		}
@@ -374,6 +375,7 @@ public class DatabaseRequestDAOImpl extends BaseDAO implements DatabaseRequestDA
 		            	testResult.setAction(rs.getString(5));
 		            	testResult.setData(this.getData(rs.getInt(7)));
 		            	testResult.setObject(this.getObject(rs.getInt(6)));
+		            	testResult.setExecSequence(rs.getInt(8));
 		                testResultList.add(testResult);
 		                
 		            }

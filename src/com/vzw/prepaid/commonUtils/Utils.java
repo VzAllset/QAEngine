@@ -35,4 +35,9 @@ public class Utils
 			driver.quit();
 		}
 	}
+	public static boolean waitTillElementHides(WebDriver driver, String xpath)
+	{
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		return wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(xpath)));
+	}
 }

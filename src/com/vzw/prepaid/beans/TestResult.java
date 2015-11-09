@@ -8,6 +8,8 @@ public class TestResult
 	private String action;
 	private Object object;
 	private Data data;
+	private int execSequence;
+	
 	public int getTestResultId() {
 		return testResultId;
 	}
@@ -44,13 +46,17 @@ public class TestResult
 	public void setData(Data data) {
 		this.data = data;
 	}
+	public int getExecSequence() {
+		return execSequence;
+	}
+	public void setExecSequence(int execSequence) {
+		this.execSequence = execSequence;
+	}
 	@Override
 	public String toString() {
-		return "TestResult [testResultId=" + testResultId + ", testResultDesc="
-				+ testResultDesc + ", status=" + status + ", action=" + action
-				+ ", object=" + object + ", data=" + data + "]";
+		return "TestResult [testResultId=" + testResultId + ", testResultDesc=" + testResultDesc + ", status=" + status
+				+ ", action=" + action + ", object=" + object + ", data=" + data + ", execSequence=" + execSequence
+				+ "]";
 	}
-	
-	
 }
 
