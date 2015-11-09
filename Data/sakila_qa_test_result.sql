@@ -44,6 +44,7 @@ CREATE TABLE `qa_test_result` (
 
 LOCK TABLES `qa_test_result` WRITE;
 /*!40000 ALTER TABLE `qa_test_result` DISABLE KEYS */;
+INSERT INTO `qa_test_result` VALUES (1,'Test if user is Dinesh','A','2015-11-08','DATA_COMPARE',17,5),(2,'Wait till login box disappears','A','2015-11-16','WAIT_TILL_HIDDEN',18,3);
 /*!40000 ALTER TABLE `qa_test_result` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -56,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-11-05  8:50:37
+-- Dump completed on 2015-11-09  2:22:42

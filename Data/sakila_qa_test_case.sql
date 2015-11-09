@@ -40,7 +40,7 @@ CREATE TABLE `qa_test_case` (
 
 LOCK TABLES `qa_test_case` WRITE;
 /*!40000 ALTER TABLE `qa_test_case` DISABLE KEYS */;
-INSERT INTO `qa_test_case` VALUES (1,'CREATE_ORDER','Creating an order','2015-10-29 15:49:56','Barath','Barath','2015-10-29 15:49:56'),(2,'AMAZON_ORDER','creating an order','2015-10-30 19:00:00','Dinesh','Dinesh','2015-10-30 19:00:00');
+INSERT INTO `qa_test_case` VALUES (1,'CREATE_ORDER','Creating an order','2015-10-29 15:49:56','Barath','Barath','2015-10-29 15:49:56'),(2,'AMAZON_ORDER','creating an order','2015-10-30 19:00:00','Dinesh','Dinesh','2015-10-30 19:00:00'),(3,'Flipkart test module','Flipkart test login flow was successful','2015-11-08 22:44:39','Barath',NULL,'2015-11-09 05:45:06');
 /*!40000 ALTER TABLE `qa_test_case` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-11-05  8:50:35
+-- Dump completed on 2015-11-09  2:22:39

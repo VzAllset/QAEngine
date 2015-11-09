@@ -39,7 +39,7 @@ CREATE TABLE `qa_test_suite` (
 
 LOCK TABLES `qa_test_suite` WRITE;
 /*!40000 ALTER TABLE `qa_test_suite` DISABLE KEYS */;
-INSERT INTO `qa_test_suite` VALUES (1,'Flipkart Smoke Test',1,'Y'),(2,'Amazon.in Regression test',2,'Y');
+INSERT INTO `qa_test_suite` VALUES (1,'Flipkart Smoke Test',1,'Y'),(2,'Amazon.in Regression test',2,'Y'),(3,'FlipKart - Validate if test was successful',1,'Y');
 /*!40000 ALTER TABLE `qa_test_suite` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-11-05  8:50:38
+-- Dump completed on 2015-11-09  2:22:44
