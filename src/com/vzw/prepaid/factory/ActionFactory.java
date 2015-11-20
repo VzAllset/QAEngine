@@ -9,6 +9,7 @@ import com.vzw.prepaid.beans.Object;
 import com.vzw.prepaid.processor.ActionExecutor;
 import com.vzw.prepaid.processor.AjaxClickActionProcessor;
 import com.vzw.prepaid.processor.CaptureActionProcessor;
+import com.vzw.prepaid.processor.CaptureAttrActionProcessor;
 import com.vzw.prepaid.processor.ClickActionProcessor;
 import com.vzw.prepaid.processor.DropdownActionProcessor;
 import com.vzw.prepaid.processor.FillActionProcessor;
@@ -34,6 +35,10 @@ public class ActionFactory
 			else if(action.equalsIgnoreCase("CAPTURE"))
 			{
 				return new CaptureActionProcessor(object,data,driver,step,flow);
+			}
+			else if(action.equalsIgnoreCase("CAPTURE_ATTR"))
+			{
+				return new CaptureAttrActionProcessor(object,data,driver,step,flow);
 			}
 			else if(action.equalsIgnoreCase("AJAX_CLICK"))
 			{

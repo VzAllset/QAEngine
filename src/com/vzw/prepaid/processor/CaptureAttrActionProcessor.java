@@ -8,14 +8,15 @@ import com.vzw.prepaid.beans.Object;
 import com.vzw.prepaid.beans.Step;
 import com.vzw.prepaid.commonUtils.Utils;
 import com.vzw.prepaid.dao.ProcessorDAOImpl;
-public class CaptureActionProcessor implements ActionExecutor{
+
+public class CaptureAttrActionProcessor implements ActionExecutor{
 
 	private Object object;
 	private WebDriver driver;
 	private Step step;
 	private Flow flow;
 	
-	public CaptureActionProcessor(Object object, Data data, WebDriver driver, Step step, Flow flow)
+	public CaptureAttrActionProcessor(Object object, Data data, WebDriver driver, Step step, Flow flow)
 	{
 		this.object = object;
 		this.driver = driver;
@@ -26,9 +27,10 @@ public class CaptureActionProcessor implements ActionExecutor{
 	@Override
 	public void runAction() {
 		String xpath = object.getObjectXPath();
-		String capturedValue =  Utils.getWebElement(driver, xpath).getText();
+		String capturedValue =  Utils.getWebElement(driver, xpath).getAttribute(step.getRefKey());
 		ProcessorDAOImpl processorDao = new ProcessorDAOImpl();
 		processorDao.captureData(capturedValue, flow.getFlowId(), step.getStepId(), step.getRefKey());
 	}
 
 }
+

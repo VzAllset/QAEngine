@@ -25,15 +25,16 @@ public class ProcessorDAOImpl extends BaseDAO implements ProcessorDAO{
 		log.info(" Captured Value:" +capturedValue + " refFlowId:" + refFlowId + " refStepId:" + refStepId + " refKey:" + refKey);
 		Connection conn = this.getConnection(DatasourceConfigurator.ds);
 		CallableStatement cstmt = null;
-		String query = "{ call QA_PKG.INSERT_CAPTURED_DATA(:P_CAPTURED_VALUE, :P_REF_FLOW_ID, :P_REF_STEP_ID, :P_REF_KEY_ID , :P_DEP_ID)}";
+		String query = "{ call INSERT_CAPTURED_DATA(?, ?, ?, ?, ?)}";
 		
 		try{
 			cstmt = conn.prepareCall(query);
-			cstmt.setString("P_CAPTURED_VALUE", capturedValue	);
-			cstmt.setInt("P_REF_FLOW_ID", refFlowId);
-			cstmt.setInt("P_REF_STEP_ID", refStepId);
-			cstmt.setString("P_REF_KEY_ID", refKey);
-			cstmt.setString("P_DEP_ID", Thread.currentThread().getName());
+			cstmt.setString(1, capturedValue	);
+			cstmt.setInt(2, refFlowId);
+			cstmt.setInt(3, refStepId);
+			cstmt.setString(4, refKey);
+			cstmt.setString(5, Thread.currentThread().getName());
+			cstmt.execute();
 		}
 		catch (SQLException sqle){
 			log.error("SQLException while fecthing the data. Exception message is" ,sqle);
@@ -51,17 +52,17 @@ public class ProcessorDAOImpl extends BaseDAO implements ProcessorDAO{
 		log.info(" Ref Flow ID :" +refFlowId + " Ref Step Id :" + refStepId );
 		Connection conn = this.getConnection(DatasourceConfigurator.ds);
 		CallableStatement cstmt = null;
-		String query = "{ call QA_PKG.GET_CAPTURED_DATA( :P_DEF_ID, P_REF_FLOW_ID, :P_REF_STEP_ID, :P_CAPTURED_VALUE )}";
+		String query = "{ call GET_CAPTURED_DATA(?, ?, ?, ?)}";
 		String capturedValue= null;
 		
 		try{
 			cstmt = conn.prepareCall(query);
-			cstmt.setString("P_DEP_ID", Thread.currentThread().getName());
-			cstmt.setInt("P_REF_FLOW_ID", refFlowId);
-			cstmt.setInt("P_REF_STEP_ID", refStepId);
-			cstmt.registerOutParameter("P_CAPTURED_VALUE", java.sql.Types.VARCHAR);
+			cstmt.setString(1, Thread.currentThread().getName());
+			cstmt.setInt(2, refFlowId);
+			cstmt.setInt(3, refStepId);
+			cstmt.registerOutParameter(4, java.sql.Types.VARCHAR);
 			cstmt.execute();
-			capturedValue=cstmt.getString("P_CAPTURED_VALUE");
+			capturedValue=cstmt.getString(4);
 		}
 		catch (SQLException sqle){
 			log.error("SQLException while fecthing the data. Exception message is" ,sqle);
