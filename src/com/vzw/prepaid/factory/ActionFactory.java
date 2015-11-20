@@ -12,6 +12,7 @@ import com.vzw.prepaid.processor.CaptureActionProcessor;
 import com.vzw.prepaid.processor.CaptureAttrActionProcessor;
 import com.vzw.prepaid.processor.ClickActionProcessor;
 import com.vzw.prepaid.processor.DropdownActionProcessor;
+import com.vzw.prepaid.processor.EnterKeyProcessor;
 import com.vzw.prepaid.processor.FillActionProcessor;
 
 public class ActionFactory 
@@ -43,6 +44,10 @@ public class ActionFactory
 			else if(action.equalsIgnoreCase("AJAX_CLICK"))
 			{
 				return new AjaxClickActionProcessor(object,data,driver);
+			}
+			else if(action.equalsIgnoreCase("PRESS_ENTER"))
+			{
+				return new EnterKeyProcessor(object,driver);
 			}
 		}
 		return null;
