@@ -45,7 +45,7 @@ CREATE TABLE `qa_test_suite_test_case_map` (
 
 LOCK TABLES `qa_test_suite_test_case_map` WRITE;
 /*!40000 ALTER TABLE `qa_test_suite_test_case_map` DISABLE KEYS */;
-INSERT INTO `qa_test_suite_test_case_map` VALUES (1,1,'test suite',NULL,1,1),(2,2,'test suite',NULL,2,2),(3,3,'test module',NULL,1,3);
+INSERT INTO `qa_test_suite_test_case_map` VALUES (1,1,'test suite',NULL,1,1),(2,2,'test suite',NULL,2,2),(3,3,'test module',NULL,1,3),(4,4,'JIRA Test suite to test case mapping',NULL,1,4);
 /*!40000 ALTER TABLE `qa_test_suite_test_case_map` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -58,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-11-09  2:22:42
+-- Dump completed on 2015-11-20 19:56:32
