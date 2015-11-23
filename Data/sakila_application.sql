@@ -36,7 +36,7 @@ CREATE TABLE `application` (
 
 LOCK TABLES `application` WRITE;
 /*!40000 ALTER TABLE `application` DISABLE KEYS */;
-INSERT INTO `application` VALUES (1,'FLIPKART','http://www.flipkart.com'),(2,'AMAZON','http://www.amazon.in'),(3,'Verizon','www.verizon.com'),(4,'JIRA Tool','http://zeroscriptautomation.atlassian.net');
+INSERT INTO `application` VALUES (1,'FLIPKART','http://www.flipkart.com'),(2,'AMAZON','http://www.amazon.in'),(3,'Verizon','www.verizon.com'),(4,'JIRA Tool','http://zeroscriptautomation.atlassian.net'),(5,'Verizon Wireline','http://www.verizon.com/?lid=//global//residential');
 /*!40000 ALTER TABLE `application` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -49,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-11-20 19:56:31
+-- Dump completed on 2015-11-23 17:49:35

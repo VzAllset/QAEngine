@@ -35,7 +35,7 @@ CREATE TABLE `qa_flow` (
 
 LOCK TABLES `qa_flow` WRITE;
 /*!40000 ALTER TABLE `qa_flow` DISABLE KEYS */;
-INSERT INTO `qa_flow` VALUES (1,'LOGIN_USER'),(2,'ALOGIN'),(3,'Test Flow'),(4,'JIRA- Login JIRA tool'),(5,'JIRA-Create new ticket'),(6,'JIRA - Search Issue');
+INSERT INTO `qa_flow` VALUES (1,'LOGIN_USER'),(2,'ALOGIN'),(3,'Test Flow'),(4,'JIRA- Login JIRA tool'),(5,'JIRA-Create new ticket'),(6,'JIRA - Search Issue'),(7,'AMAZON NEW LOGIN'),(8,'AMAZON_WISHLIST'),(9,'Wireline Order flow');
 /*!40000 ALTER TABLE `qa_flow` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -48,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-11-20 19:56:30
+-- Dump completed on 2015-11-23 17:49:34

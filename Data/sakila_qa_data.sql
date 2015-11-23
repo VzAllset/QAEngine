@@ -37,7 +37,7 @@ CREATE TABLE `qa_data` (
 
 LOCK TABLES `qa_data` WRITE;
 /*!40000 ALTER TABLE `qa_data` DISABLE KEYS */;
-INSERT INTO `qa_data` VALUES (1,'USERNAME','maildinesh@gmail.com','username'),(2,'PASSWORD','altec12','password'),(3,'DUMMY_DATA','NULL','DUMMY'),(4,'APASSWORD','redroses12','apassword'),(5,'Logged user','Hi Barath!','User logged in'),(6,'JIRA loginid','barath.nagarajan@gmail.com','JIRA userid'),(7,'JIRA Password','P@55word','password for JIRA tool'),(8,'JIRA summary','Sample issue created','Data for summary textbox');
+INSERT INTO `qa_data` VALUES (1,'USERNAME','maildinesh@gmail.com','username'),(2,'PASSWORD','altec12','password'),(3,'DUMMY_DATA','NULL','DUMMY'),(4,'APASSWORD','redroses12','apassword'),(5,'Logged user','Hi Barath!','User logged in'),(6,'JIRA loginid','barath.nagarajan@gmail.com','JIRA userid'),(7,'JIRA Password','P@55word','password for JIRA tool'),(8,'JIRA summary','Sample issue created','Data for summary textbox'),(9,'ADDRESS_LINE','5339, N Mac Arthur blvd , apt 2124',''),(10,'ADDRESS_ZIP','75038','');
 /*!40000 ALTER TABLE `qa_data` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-11-20 19:56:30
+-- Dump completed on 2015-11-23 17:49:34
