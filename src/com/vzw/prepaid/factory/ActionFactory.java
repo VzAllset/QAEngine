@@ -14,6 +14,9 @@ import com.vzw.prepaid.processor.ClickActionProcessor;
 import com.vzw.prepaid.processor.DropdownActionProcessor;
 import com.vzw.prepaid.processor.EnterKeyProcessor;
 import com.vzw.prepaid.processor.FillActionProcessor;
+import com.vzw.prepaid.processor.HoverProcessor;
+import com.vzw.prepaid.processor.IframeSwitchProcessor;
+import com.vzw.prepaid.processor.SelectableClickProcessor;
 
 public class ActionFactory 
 {
@@ -48,6 +51,18 @@ public class ActionFactory
 			else if(action.equalsIgnoreCase("PRESS_ENTER"))
 			{
 				return new EnterKeyProcessor(object,driver);
+			}
+			else if(action.equalsIgnoreCase("HOVER"))
+			{
+				return new HoverProcessor(object,driver);
+			}
+			else if(action.equalsIgnoreCase("IFRAME_SWITCH"))
+			{
+				return new IframeSwitchProcessor(object,driver);
+			}
+			else if(action.equalsIgnoreCase("SELECTABLE_CLICK"))
+			{
+				return new SelectableClickProcessor(object,data,driver);
 			}
 		}
 		return null;
