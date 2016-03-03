@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 1, 2016 4:05:52 PM by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="com.vzw.prepaid.dao.generated.QaTestResult" table="qa_test_result" catalog="sakila" optimistic-lock="version">
+        <id name="testResultId" type="long">
+            <column name="TEST_RESULT_ID" precision="10" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="qaData" class="com.vzw.prepaid.dao.generated.QaData" fetch="select">
+            <column name="DATA_ID" precision="10" scale="0" not-null="true" />
+        </many-to-one>
+        <many-to-one name="qaObject" class="com.vzw.prepaid.dao.generated.QaObject" fetch="select">
+            <column name="OBJECT_ID" precision="10" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="testDescription" type="string">
+            <column name="TEST_DESCRIPTION" length="200" />
+        </property>
+        <property name="status" type="string">
+            <column name="STATUS" length="1" />
+        </property>
+        <property name="createdDt" type="date">
+            <column name="CREATED_DT" length="10" />
+        </property>
+        <property name="action" type="string">
+            <column name="ACTION" length="20" not-null="true" />
+        </property>
+        <set name="qaFlowTestMaps" table="qa_flow_test_map" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="TEST_RESULT_ID" precision="10" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="com.vzw.prepaid.dao.generated.QaFlowTestMap" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import org.apache.commons.dbcp.BasicDataSource;
 import org.apache.log4j.Logger;
+import org.hibernate.SessionFactory;
 
 public class BaseDAO {
 	
@@ -70,5 +71,8 @@ public class BaseDAO {
 			}	
 		}
 	}
-
+	public SessionFactory getSessionFactory()
+	{
+		return HibernateUtil.getSessionFactory();
+	}
 }

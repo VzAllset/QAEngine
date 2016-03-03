@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 1, 2016 4:05:52 PM by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="com.vzw.prepaid.dao.generated.QaTestCase" table="qa_test_case" catalog="sakila" optimistic-lock="version">
+        <id name="testCaseId" type="long">
+            <column name="TEST_CASE_ID" precision="10" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="testCaseName" type="string">
+            <column name="TEST_CASE_NAME" length="50" />
+        </property>
+        <property name="testCaseDesc" type="string">
+            <column name="TEST_CASE_DESC" length="200" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CREATE_DATE" length="19" not-null="true" />
+        </property>
+        <property name="createUserid" type="string">
+            <column name="CREATE_USERID" length="15" />
+        </property>
+        <property name="lastUpdatedUserid" type="string">
+            <column name="LAST_UPDATED_USERID" length="15" />
+        </property>
+        <property name="lastUpdatedDt" type="timestamp">
+            <column name="LAST_UPDATED_DT" length="19" not-null="true" />
+        </property>
+        <set name="qaTestSuiteTestCaseMaps" table="qa_test_suite_test_case_map" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="TEST_CASE_ID" precision="10" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="com.vzw.prepaid.dao.generated.QaTestSuiteTestCaseMap" />
+        </set>
+        <set name="qaTestCaseFlowMaps" table="qa_test_case_flow_map" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="TEST_CASE_ID" precision="10" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="com.vzw.prepaid.dao.generated.QaTestCaseFlowMap" />
+        </set>
+        <set name="qaResultTestCases" table="qa_result_test_case" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="TEST_CASE_ID" precision="10" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="com.vzw.prepaid.dao.generated.QaResultTestCase" />
+        </set>
+        <set name="qaResults" table="qa_result" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="TEST_CASE_ID" precision="10" scale="0" />
+            </key>
+            <one-to-many class="com.vzw.prepaid.dao.generated.QaResult" />
+        </set>
+    </class>
+</hibernate-mapping>

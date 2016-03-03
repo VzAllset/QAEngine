@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 1, 2016 4:05:52 PM by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="com.vzw.prepaid.dao.generated.QaTestSuiteTestCaseMap" table="qa_test_suite_test_case_map" catalog="sakila" optimistic-lock="version">
+        <id name="testSuiteTestCaseMapId" type="long">
+            <column name="TEST_SUITE_TEST_CASE_MAP_ID" precision="10" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="qaTestCase" class="com.vzw.prepaid.dao.generated.QaTestCase" fetch="select">
+            <column name="TEST_CASE_ID" precision="10" scale="0" not-null="true" />
+        </many-to-one>
+        <many-to-one name="qaTestSuiteByTestSuiteId" class="com.vzw.prepaid.dao.generated.QaTestSuite" fetch="select">
+            <column name="TEST_SUITE_ID" precision="10" scale="0" not-null="true" />
+        </many-to-one>
+        <many-to-one name="qaTestSuiteByDepSuite" class="com.vzw.prepaid.dao.generated.QaTestSuite" fetch="select">
+            <column name="DEP_SUITE" precision="10" scale="0" />
+        </many-to-one>
+        <property name="description" type="string">
+            <column name="description" length="100" />
+        </property>
+        <property name="execSequence" type="java.lang.Long">
+            <column name="EXEC_SEQUENCE" precision="10" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

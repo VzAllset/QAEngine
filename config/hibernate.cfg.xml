@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.password">barath</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/sakila</property>
+        <property name="hibernate.connection.username">barath</property>
+        <!-- <property name="hibernate.default_schema">sakila</property> -->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.current_session_context_class">thread</property>
+        <mapping resource="Application.hbm.xml"></mapping>
+		<mapping resource="QaData.hbm.xml"></mapping>
+		<mapping resource="QaObject.hbm.xml"></mapping>
+		<mapping resource="QaStep.hbm.xml"></mapping>
+		<mapping resource="QaDepData.hbm.xml"></mapping>
+		<mapping resource="QaFailure.hbm.xml"></mapping>
+		<mapping resource="QaFlow.hbm.xml"></mapping>
+		<mapping resource="QaResult.hbm.xml"></mapping>
+		<mapping resource="QaTestCase.hbm.xml"></mapping>
+		<mapping resource="QaTestResult.hbm.xml"></mapping>
+		<mapping resource="QaTestSuite.hbm.xml"></mapping>
+		<mapping resource="QaFlowStepMap.hbm.xml"></mapping>
+		<mapping resource="QaFlowTestMap.hbm.xml"></mapping>
+		<mapping resource="QaTestCaseFlowMap.hbm.xml"></mapping>
+		<mapping resource="QaTestSuiteTestCaseMap.hbm.xml"></mapping>
+		<mapping resource="QaResultTestCase.hbm.xml"></mapping>
+    </session-factory>
+</hibernate-configuration>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 1, 2016 4:05:52 PM by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="com.vzw.prepaid.dao.generated.QaObject" table="qa_object" catalog="sakila" optimistic-lock="version">
+        <id name="objId" type="long">
+            <column name="OBJ_ID" precision="10" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="objName" type="string">
+            <column name="OBJ_NAME" length="30" />
+        </property>
+        <property name="objXpath" type="string">
+            <column name="OBJ_XPATH" length="500" />
+        </property>
+        <property name="objDesc" type="string">
+            <column name="OBJ_DESC" length="200" />
+        </property>
+        <set name="qaTestResults" table="qa_test_result" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="OBJECT_ID" precision="10" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="com.vzw.prepaid.dao.generated.QaTestResult" />
+        </set>
+        <set name="qaSteps" table="qa_step" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="OBJ_ID" precision="10" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="com.vzw.prepaid.dao.generated.QaStep" />
+        </set>
+    </class>
+</hibernate-mapping>

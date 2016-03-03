@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 1, 2016 4:05:52 PM by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="com.vzw.prepaid.dao.generated.QaResult" table="qa_result" catalog="sakila" optimistic-lock="version">
+        <id name="resultId" type="long">
+            <column name="RESULT_ID" precision="10" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="qaFlow" class="com.vzw.prepaid.dao.generated.QaFlow" fetch="select">
+            <column name="FLOW_ID" precision="10" scale="0" />
+        </many-to-one>
+        <many-to-one name="qaStep" class="com.vzw.prepaid.dao.generated.QaStep" fetch="select">
+            <column name="STEP_ID" precision="10" scale="0" />
+        </many-to-one>
+        <many-to-one name="qaTestCase" class="com.vzw.prepaid.dao.generated.QaTestCase" fetch="select">
+            <column name="TEST_CASE_ID" precision="10" scale="0" />
+        </many-to-one>
+        <property name="executionStart" type="timestamp">
+            <column name="EXECUTION_START" length="19" not-null="true" />
+        </property>
+        <property name="executionDuration" type="java.lang.Long">
+            <column name="EXECUTION_DURATION" precision="10" scale="0" />
+        </property>
+        <property name="resultStatus" type="string">
+            <column name="RESULT_STATUS" length="10" />
+        </property>
+        <property name="resultDecription" type="string">
+            <column name="RESULT_DECRIPTION" length="100" />
+        </property>
+        <property name="screenshot" type="binary">
+            <column name="SCREENSHOT" />
+        </property>
+    </class>
+</hibernate-mapping>

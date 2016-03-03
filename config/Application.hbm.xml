@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 1, 2016 4:05:52 PM by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="com.vzw.prepaid.dao.generated.Application" table="application" catalog="sakila" optimistic-lock="version">
+        <id name="applicationId" type="long">
+            <column name="APPLICATION_ID" precision="10" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="applicationName" type="string">
+            <column name="APPLICATION_NAME" length="100" />
+        </property>
+        <property name="applicationUrl" type="string">
+            <column name="APPLICATION_URL" length="100" />
+        </property>
+        <set name="qaTestSuites" table="qa_test_suite" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="APPLICATION_ID" precision="10" scale="0" />
+            </key>
+            <one-to-many class="com.vzw.prepaid.dao.generated.QaTestSuite" />
+        </set>
+    </class>
+</hibernate-mapping>

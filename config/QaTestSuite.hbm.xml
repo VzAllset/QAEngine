@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 1, 2016 4:05:52 PM by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="com.vzw.prepaid.dao.generated.QaTestSuite" table="qa_test_suite" catalog="sakila" optimistic-lock="version">
+        <id name="testSuiteId" type="long">
+            <column name="TEST_SUITE_ID" precision="10" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="application" class="com.vzw.prepaid.dao.generated.Application" fetch="select">
+            <column name="APPLICATION_ID" precision="10" scale="0" />
+        </many-to-one>
+        <property name="testSuiteName" type="string">
+            <column name="TEST_SUITE_NAME" length="100" />
+        </property>
+        <property name="newBrowser" type="string">
+            <column name="NEW_BROWSER" length="1" />
+        </property>
+        <set name="qaTestSuiteTestCaseMapsForTestSuiteId" table="qa_test_suite_test_case_map" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="TEST_SUITE_ID" precision="10" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="com.vzw.prepaid.dao.generated.QaTestSuiteTestCaseMap" />
+        </set>
+        <set name="qaTestSuiteTestCaseMapsForDepSuite" table="qa_test_suite_test_case_map" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="DEP_SUITE" precision="10" scale="0" />
+            </key>
+            <one-to-many class="com.vzw.prepaid.dao.generated.QaTestSuiteTestCaseMap" />
+        </set>
+    </class>
+</hibernate-mapping>

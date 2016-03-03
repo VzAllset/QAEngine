@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 1, 2016 4:05:52 PM by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="com.vzw.prepaid.dao.generated.QaFailure" table="qa_failure" catalog="sakila" optimistic-lock="version">
+        <id name="threadId" type="string">
+            <column name="THREAD_ID" length="20" />
+            <generator class="assigned" />
+        </id>
+        <property name="errorLog" type="string">
+            <column name="ERROR_LOG" />
+        </property>
+        <property name="screenshot" type="binary">
+            <column name="SCREENSHOT" />
+        </property>
+        <property name="createdDt" type="date">
+            <column name="CREATED_DT" length="10" />
+        </property>
+    </class>
+</hibernate-mapping>

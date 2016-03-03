@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 1, 2016 4:05:52 PM by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="com.vzw.prepaid.dao.generated.QaFlow" table="qa_flow" catalog="sakila" optimistic-lock="version">
+        <id name="flowId" type="long">
+            <column name="FLOW_ID" precision="10" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="flowDesc" type="string">
+            <column name="FLOW_DESC" length="200" />
+        </property>
+        <set name="qaDepDatas" table="qa_dep_data" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="FLOW_ID" precision="10" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="com.vzw.prepaid.dao.generated.QaDepData" />
+        </set>
+        <set name="qaResultTestCases" table="qa_result_test_case" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="FLOW_ID" precision="10" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="com.vzw.prepaid.dao.generated.QaResultTestCase" />
+        </set>
+        <set name="qaFlowStepMapsForRefFlowId" table="qa_flow_step_map" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="REF_FLOW_ID" precision="10" scale="0" />
+            </key>
+            <one-to-many class="com.vzw.prepaid.dao.generated.QaFlowStepMap" />
+        </set>
+        <set name="qaTestCaseFlowMaps" table="qa_test_case_flow_map" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="FLOW_ID" precision="10" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="com.vzw.prepaid.dao.generated.QaTestCaseFlowMap" />
+        </set>
+        <set name="qaFlowStepMapsForFlowId" table="qa_flow_step_map" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="FLOW_ID" precision="10" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="com.vzw.prepaid.dao.generated.QaFlowStepMap" />
+        </set>
+        <set name="qaResults" table="qa_result" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="FLOW_ID" precision="10" scale="0" />
+            </key>
+            <one-to-many class="com.vzw.prepaid.dao.generated.QaResult" />
+        </set>
+        <set name="qaFlowTestMaps" table="qa_flow_test_map" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="FLOW_ID" precision="10" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="com.vzw.prepaid.dao.generated.QaFlowTestMap" />
+        </set>
+    </class>
+</hibernate-mapping>

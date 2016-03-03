@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 1, 2016 4:05:52 PM by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="com.vzw.prepaid.dao.generated.QaTestCaseFlowMap" table="qa_test_case_flow_map" catalog="sakila" optimistic-lock="version">
+        <id name="testCaseFlowMapId" type="long">
+            <column name="TEST_CASE_FLOW_MAP_ID" precision="10" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="qaFlow" class="com.vzw.prepaid.dao.generated.QaFlow" fetch="select">
+            <column name="FLOW_ID" precision="10" scale="0" not-null="true" />
+        </many-to-one>
+        <many-to-one name="qaTestCase" class="com.vzw.prepaid.dao.generated.QaTestCase" fetch="select">
+            <column name="TEST_CASE_ID" precision="10" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="mappingDesc" type="string">
+            <column name="MAPPING_DESC" length="30" />
+        </property>
+        <property name="execSequence" type="long">
+            <column name="EXEC_SEQUENCE" precision="10" scale="0" not-null="true" />
+        </property>
+        <property name="depFlow" type="java.lang.Long">
+            <column name="DEP_FLOW" precision="10" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>
