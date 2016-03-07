@@ -2,10 +2,10 @@ package com.vzw.prepaid.factory;
 
 import org.openqa.selenium.WebDriver;
 
-import com.vzw.prepaid.beans.Data;
-import com.vzw.prepaid.beans.Flow;
-import com.vzw.prepaid.beans.Step;
-import com.vzw.prepaid.beans.Object;
+import com.vzw.prepaid.dao.generated.QaData;
+import com.vzw.prepaid.dao.generated.QaFlow;
+import com.vzw.prepaid.dao.generated.QaObject;
+import com.vzw.prepaid.dao.generated.QaStep;
 import com.vzw.prepaid.processor.ActionExecutor;
 import com.vzw.prepaid.processor.AjaxClickActionProcessor;
 import com.vzw.prepaid.processor.CaptureActionProcessor;
@@ -20,7 +20,7 @@ import com.vzw.prepaid.processor.SelectableClickProcessor;
 
 public class ActionFactory 
 {
-	public static ActionExecutor getActionProcessor(String action, Object object, Data data, WebDriver driver,Step step, Flow flow)
+	public static ActionExecutor getActionProcessor(String action, QaObject object, QaData data, WebDriver driver,QaStep step, QaFlow flow)
 	{
 		if(action != null)
 		{

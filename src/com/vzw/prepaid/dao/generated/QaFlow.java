@@ -112,4 +112,9 @@ public class QaFlow implements java.io.Serializable {
 		this.qaFlowTestMaps = qaFlowTestMaps;
 	}
 
+	@Override
+	public String toString() {
+		return "QaFlow [flowId=" + flowId + ", flowDesc=" + flowDesc + "]";
+	}
+
 }

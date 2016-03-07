@@ -136,4 +136,14 @@ public class QaTestCase implements java.io.Serializable {
 		this.qaResults = qaResults;
 	}
 
+	@Override
+	public String toString() {
+		return "QaTestCase [testCaseId=" + testCaseId + ", testCaseName=" + testCaseName + ", testCaseDesc="
+				+ testCaseDesc + ", createDate=" + createDate + ", createUserid=" + createUserid
+				+ ", lastUpdatedUserid=" + lastUpdatedUserid + ", lastUpdatedDt=" + lastUpdatedDt
+				+ ", qaTestCaseFlowMaps=" + qaTestCaseFlowMaps + ", qaResultTestCases=" + qaResultTestCases
+				+ ", qaResults=" + qaResults + "]";
+	}
+
+
 }

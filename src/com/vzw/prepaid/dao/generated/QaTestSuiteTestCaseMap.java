@@ -83,4 +83,10 @@ public class QaTestSuiteTestCaseMap implements java.io.Serializable {
 		this.execSequence = execSequence;
 	}
 
+	@Override
+	public String toString() {
+		return "QaTestSuiteTestCaseMap [testSuiteTestCaseMapId=" + testSuiteTestCaseMapId + ", qaTestCase=" + qaTestCase
+				+ ", description=" + description + ", execSequence=" + execSequence + "]";
+	}
+
 }

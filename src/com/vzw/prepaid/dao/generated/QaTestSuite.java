@@ -14,8 +14,8 @@ public class QaTestSuite implements java.io.Serializable {
 	private Application application;
 	private String testSuiteName;
 	private String newBrowser;
-	private Set qaTestSuiteTestCaseMapsForTestSuiteId = new HashSet(0);
-	private Set qaTestSuiteTestCaseMapsForDepSuite = new HashSet(0);
+	private Set<QaTestSuiteTestCaseMap> qaTestSuiteTestCaseMapsForTestSuiteId = new HashSet<QaTestSuiteTestCaseMap>(0);
+	private Set<QaTestSuiteTestCaseMap> qaTestSuiteTestCaseMapsForDepSuite = new HashSet<QaTestSuiteTestCaseMap>(0);
 
 	public QaTestSuite() {
 	}
@@ -81,5 +81,14 @@ public class QaTestSuite implements java.io.Serializable {
 	public void setQaTestSuiteTestCaseMapsForDepSuite(Set qaTestSuiteTestCaseMapsForDepSuite) {
 		this.qaTestSuiteTestCaseMapsForDepSuite = qaTestSuiteTestCaseMapsForDepSuite;
 	}
+
+	@Override
+	public String toString() {
+		return "QaTestSuite [testSuiteId=" + testSuiteId + ", application=" + application + ", testSuiteName="
+				+ testSuiteName + ", newBrowser=" + newBrowser + ", qaTestSuiteTestCaseMapsForTestSuiteId="
+				+ qaTestSuiteTestCaseMapsForTestSuiteId + ", qaTestSuiteTestCaseMapsForDepSuite="
+				+ qaTestSuiteTestCaseMapsForDepSuite + "]";
+	}
+
 
 }

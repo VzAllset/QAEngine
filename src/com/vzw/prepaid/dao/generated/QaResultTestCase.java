@@ -80,4 +80,10 @@ public class QaResultTestCase implements java.io.Serializable {
 		this.status = status;
 	}
 
+	@Override
+	public String toString() {
+		return "QaResultTestCase [resultTestCaseId=" + resultTestCaseId + ", qaFlow=" + qaFlow + ", qaStep=" + qaStep
+				+ ", threadId=" + threadId + ", status=" + status + "]";
+	}
+
 }

@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 import com.vzw.prepaid.beans.TestSuite;
 import com.vzw.prepaid.configuration.GenerateTestObject;
 import com.vzw.prepaid.configuration.PropertyConfigurator;
+import com.vzw.prepaid.dao.generated.QaTestSuite;
 import com.vzw.prepaid.executors.TestSuiteExecutor;
 import com.vzw.prepaid.factory.RequestFactory;
 
@@ -23,7 +24,7 @@ public class ExecuteAll implements Callable<HashMap<String,Object>>
 	public HashMap<String,Object> executeInThreads()
 	{
 		GenerateTestObject requestObject = null;
-		TestSuite suite = null;
+		QaTestSuite suite = null;
 		TestSuiteExecutor executor = null;
 		HashMap<String,Object> result = new HashMap<String,Object>();
 		

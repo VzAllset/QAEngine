@@ -6,20 +6,20 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 
-import com.vzw.prepaid.beans.Data;
-import com.vzw.prepaid.beans.Object;
+import com.vzw.prepaid.dao.generated.QaData;
+import com.vzw.prepaid.dao.generated.QaObject;
 
 public class DropdownActionProcessor implements ActionExecutor {
 	
 	
 	static Logger logger  = Logger.getLogger(DropdownActionProcessor.class);
 	
-	private Data data;
-	private Object object;
+	private QaData data;
+	private QaObject object;
 	private WebDriver driver;
 	
 	
-	public DropdownActionProcessor(Object object, Data data, WebDriver driver) {
+	public DropdownActionProcessor(QaObject object, QaData data, WebDriver driver) {
 		this.data = data;
 		this.object = object;
 		this.driver = driver;
@@ -29,7 +29,7 @@ public class DropdownActionProcessor implements ActionExecutor {
 	
 	@Override
 	public void runAction(){
-		String xpath = object.getObjectXPath();
+		String xpath = object.getObjXpath();
 		Select select = new Select(driver.findElement(By.xpath(xpath)));
 		select.selectByVisibleText(data.getDataValue());
 	}

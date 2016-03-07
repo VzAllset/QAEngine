@@ -41,13 +41,13 @@ public class Main {
 			
 			//test = requestObject.constructTestObject(1);
 			
-			TestSuite suite = requestObject.constructTestSuite(1);
-			System.out.println(suite.toString());
+			//TestSuite suite = requestObject.constructTestSuite(1);
+			//System.out.println(suite.toString());
 			
 			/*executor = new TestCaseExecutor(test,true);
 			executor.execute();*/
-			executor = new TestSuiteExecutor(suite);
-			executor.execute();
+			/*executor = new TestSuiteExecutor(suite);
+			executor.execute();*/
 			
 		
 		}catch (Exception e ){

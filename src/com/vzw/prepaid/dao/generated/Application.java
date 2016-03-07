@@ -11,7 +11,7 @@ public class Application implements java.io.Serializable {
 	private long applicationId;
 	private String applicationName;
 	private String applicationUrl;
-	private Set qaTestSuites = new HashSet(0);
+	private Set<QaTestSuite> qaTestSuites = new HashSet<QaTestSuite>(0);
 
 	public Application() {
 	}
@@ -20,7 +20,7 @@ public class Application implements java.io.Serializable {
 		this.applicationId = applicationId;
 	}
 
-	public Application(long applicationId, String applicationName, String applicationUrl, Set qaTestSuites) {
+	public Application(long applicationId, String applicationName, String applicationUrl, Set<QaTestSuite> qaTestSuites) {
 		this.applicationId = applicationId;
 		this.applicationName = applicationName;
 		this.applicationUrl = applicationUrl;
@@ -51,13 +51,18 @@ public class Application implements java.io.Serializable {
 		this.applicationUrl = applicationUrl;
 	}
 
-	public Set getQaTestSuites() {
+	public Set<QaTestSuite> getQaTestSuites() {
 		return this.qaTestSuites;
 	}
 
-	public void setQaTestSuites(Set qaTestSuites) {
+	public void setQaTestSuites(Set<QaTestSuite> qaTestSuites) {
 		this.qaTestSuites = qaTestSuites;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "Application [applicationId=" + applicationId + ", applicationName=" + applicationName
+				+ ", applicationUrl=" + applicationUrl + "]";
+	}
+
 }

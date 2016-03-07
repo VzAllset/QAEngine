@@ -7,8 +7,8 @@ public class TestMain
 	public static void main(String args[])
 	{
 		/* Following lines to disable selenium webdriver logging */
-		//System.setProperty("org.apache.commons.logging.Log", "org.apache.commons.logging.impl.SimpleLog");
-		//System.setProperty("org.apache.commons.logging.simplelog.log.org.apache.http", "warn");
+		System.setProperty("org.apache.commons.logging.Log", "org.apache.commons.logging.impl.SimpleLog");
+		System.setProperty("org.apache.commons.logging.simplelog.log.org.apache.http", "warn");
 		/* ends */
 		ThreadInitiator initiator= new ThreadInitiator();
 		// Serial processing with one flow -  FlipKart Login

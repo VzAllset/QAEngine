@@ -112,4 +112,11 @@ public class QaResult implements java.io.Serializable {
 		this.screenshot = screenshot;
 	}
 
+	@Override
+	public String toString() {
+		return "QaResult [resultId=" + resultId + ", qaFlow=" + qaFlow + ", qaStep=" + qaStep + ", executionStart="
+				+ executionStart + ", executionDuration=" + executionDuration + ", resultStatus=" + resultStatus
+				+ ", resultDecription=" + resultDecription + "]";
+	}
+
 }

@@ -1,12 +1,12 @@
 package com.vzw.prepaid.comparators;
 
 import java.util.Comparator;
-import com.vzw.prepaid.beans.TestCase;
+import com.vzw.prepaid.dao.generated.QaTestSuiteTestCaseMap;
 
-public class TestCaseComparator implements Comparator<TestCase>
+public class TestCaseComparator implements Comparator<QaTestSuiteTestCaseMap>
 {
 	@Override
-	public int compare(TestCase case1, TestCase case2) {
-		return Integer.valueOf(case1.getExecutionSequence()).compareTo(Integer.valueOf(case2.getExecutionSequence()));
+	public int compare(QaTestSuiteTestCaseMap case1, QaTestSuiteTestCaseMap case2) {
+		return case1.getExecSequence().compareTo(case2.getExecSequence());
 	}
 }

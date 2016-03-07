@@ -2,96 +2,97 @@ package com.vzw.prepaid.executors;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.util.Collections;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
+import java.util.Iterator;
+import java.util.Set;
+import java.util.TreeSet;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-
-import com.vzw.prepaid.beans.Flow;
-import com.vzw.prepaid.beans.TestCase;
-import com.vzw.prepaid.beans.TestResult;
 import com.vzw.prepaid.commonUtils.Utils;
 import com.vzw.prepaid.comparators.FlowComparator;
-import com.vzw.prepaid.comparators.FlowTestResultComparator;
 import com.vzw.prepaid.configuration.PropertyConfigurator;
-import com.vzw.prepaid.dao.ProcessorDAO;
-import com.vzw.prepaid.dao.ProcessorDAOImpl;
+import com.vzw.prepaid.dao.generated.QaFailure;
+import com.vzw.prepaid.dao.generated.QaFailureHome;
+import com.vzw.prepaid.dao.generated.QaFlow;
+import com.vzw.prepaid.dao.generated.QaResultTestCase;
+import com.vzw.prepaid.dao.generated.QaResultTestCaseHome;
+import com.vzw.prepaid.dao.generated.QaStep;
+import com.vzw.prepaid.dao.generated.QaStepHome;
+import com.vzw.prepaid.dao.generated.QaTestCase;
+import com.vzw.prepaid.dao.generated.QaTestCaseFlowMap;
 import com.vzw.prepaid.exceptions.StepException;
-import com.vzw.prepaid.factory.BrowserFactory;
-import com.vzw.prepaid.factory.TestFactory;
-import com.vzw.prepaid.testflow.TestExecutor;
+
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 
 public class TestCaseExecutor implements Executor
 {
 	static Logger logger = Logger.getLogger(TestCaseExecutor.class);
 	
-	private TestCase testCase;
+	private QaTestCase qaTestCase;
 	private boolean newBrowserFlag;
 	private WebDriver driver = null;
-	private ProcessorDAO processorDAO;
 	
-	public TestCaseExecutor(TestCase testCase, boolean needNewBrowser, WebDriver driver)
+	public TestCaseExecutor(QaTestCase qaTestCase, boolean needNewBrowser, WebDriver driver)
 	{
-		this.testCase = testCase;
+		this.qaTestCase = qaTestCase;
 		this.newBrowserFlag = needNewBrowser;
 		Thread.currentThread().setName(Utils.getDate());
 		System.out.println("Thread name is "+Utils.getDate());
 		this.driver = driver;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void execute() throws Exception {
-		logger.info("Starting to execute the test case >> "+testCase.toString());
-		List<Flow> flows = testCase.getFlows();
-		Collections.sort(flows, new FlowComparator());
-		/*if(newBrowserFlag)
+		logger.info("Starting to execute the test case >> "+qaTestCase.toString());
+		/* Sorting based on execution sequence */
+		Set<QaTestCaseFlowMap> set = (Set<QaTestCaseFlowMap>)qaTestCase.getQaTestCaseFlowMaps();
+		Set<QaTestCaseFlowMap> flowMapSet = new TreeSet<QaTestCaseFlowMap>(new FlowComparator());
+		flowMapSet.addAll(set);
+		/* Sorting based on execution sequence ends */
+		Iterator<QaTestCaseFlowMap> itr = flowMapSet.iterator();
+		while(itr.hasNext())
 		{
-			driver = BrowserFactory.getWebDriver(PropertyConfigurator.props.getProperty("BROWSER"));
-			driver.manage().timeouts().implicitlyWait(Long.parseLong(PropertyConfigurator.props.getProperty("TIMEOUT")), TimeUnit.SECONDS);
-			driver.get(PropertyConfigurator.props.getProperty("APPLICATION_URL"));
-		}*/
-		for(Flow flow:flows)
-		{
+			QaTestCaseFlowMap eachMap = itr.next();
+			QaFlow flow = eachMap.getQaFlow();
+			QaTestCase testCase = eachMap.getQaTestCase();
 			FlowExecutor flowExecutor = new FlowExecutor(testCase,flow,driver);
-			logger.debug("Starting to execute the flow >>"+flow.toString());
 			try
 			{
 				flowExecutor.execute();
-				if(flow!=null && flow.getTests() != null && flow.getTests().size()>0)
-				{
-					List<TestResult> tests = flow.getTests();
-					Collections.sort(tests, new FlowTestResultComparator());
-					for(TestResult test : tests)
-					{
-						boolean result = true;
-						TestExecutor testExecutor = TestFactory.getTestProcessor(test.getAction(), test.getObject(), test.getData(), driver);
-						result = testExecutor.runTest();
-						if(!result)
-						{
-							throw new StepException (flow,test);
-						}
-					}
-				}
+				/* Tests for each flow code should come here */
+				//QaFlowTestMapHome flowTestMapHome = new QaFlowTestMapHome();
+				/* Tests for each flow code should come ends */
 			}
 			catch(StepException se)
 			{
 				logger.error("Inside step exception. Exception message is ",se);
-				processorDAO = new ProcessorDAOImpl();
+				QaResultTestCaseHome results = new QaResultTestCaseHome();
+				QaResultTestCase resultTestCase = new QaResultTestCase();
+				resultTestCase.setQaTestCase(qaTestCase);
+				resultTestCase.setQaFlow(flow);
+				resultTestCase.setStatus("FAILED");
+				resultTestCase.setThreadId(Thread.currentThread().getName());
 				if(se != null && se.getStep() != null)
 				{
-					processorDAO.insertStepStatus(testCase.getTestCaseId(),flow.getFlowId(),se.getStep().getStepId(),"FAILED");
+					resultTestCase.setQaStep(se.getStep());
 				}
 				else
 				{
-					processorDAO.insertStepStatus(testCase.getTestCaseId(),flow.getFlowId(),Integer.valueOf(PropertyConfigurator.props.getProperty("TEST_FAILED_STEP_ID")),"FAILED");
+					QaStepHome stepHome = new QaStepHome();
+					QaStep step = stepHome.findById(Long.valueOf(PropertyConfigurator.props.getProperty("TEST_FAILED_STEP_ID")));
+					resultTestCase.setQaStep(step);
 				}
+				results.persist(resultTestCase);
 				File file = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-				processorDAO.insertErrorLog(Thread.currentThread().getName(),ExceptionUtils.getStackTrace(se),new FileInputStream(file));
+				QaFailure failure = new QaFailure();
+				failure.setThreadId(Thread.currentThread().getName());
+				failure.setErrorLog(ExceptionUtils.getStackTrace(se));
+				failure.setScreenshot(IOUtils.toByteArray(new FileInputStream(file)));
+				QaFailureHome failureHome = new QaFailureHome();
+				failureHome.persist(failure);
 				Utils.closeDriver(driver);
 				throw se;
 			}
@@ -103,8 +104,5 @@ public class TestCaseExecutor implements Executor
 			}
 			logger.info("Exection of flow >>"+flow.toString()+" completed !!");
 		}
-		//Utils.closeDriver(driver);
-		logger.info("Execution of test case >> "+testCase.toString()+" completed !!");
 	}
-	
 }

@@ -2,14 +2,13 @@ package com.vzw.prepaid.executors;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
-
-import com.vzw.prepaid.beans.Data;
-import com.vzw.prepaid.beans.Flow;
-import com.vzw.prepaid.beans.Step;
-import com.vzw.prepaid.beans.Object;
-import com.vzw.prepaid.beans.TestCase;
-import com.vzw.prepaid.dao.ProcessorDAO;
-import com.vzw.prepaid.dao.ProcessorDAOImpl;
+import com.vzw.prepaid.dao.generated.QaData;
+import com.vzw.prepaid.dao.generated.QaFlow;
+import com.vzw.prepaid.dao.generated.QaObject;
+import com.vzw.prepaid.dao.generated.QaResultTestCase;
+import com.vzw.prepaid.dao.generated.QaResultTestCaseHome;
+import com.vzw.prepaid.dao.generated.QaStep;
+import com.vzw.prepaid.dao.generated.QaTestCase;
 import com.vzw.prepaid.exceptions.StepException;
 import com.vzw.prepaid.factory.ActionFactory;
 import com.vzw.prepaid.processor.ActionExecutor;
@@ -18,17 +17,15 @@ public class StepExecutor implements Executor
 {
 	static Logger log = Logger.getLogger(StepExecutor.class);
 	
-	private Step step;
-	private Data data;
-	private Object object;
+	private QaStep step;
+	private QaData data;
+	private QaObject object;
 	private String action;
 	private WebDriver driver;
-	private Flow flow;
-	private TestCase testCase;
-	private ProcessorDAO processorDAO;
+	private QaFlow flow;
+	private QaTestCase testCase;
 	
-	
-	public StepExecutor(Step step, Object object, Data data, WebDriver driver, Flow flow, TestCase testCase)
+	public StepExecutor(QaStep step, QaObject object, QaData data, WebDriver driver, QaFlow flow, QaTestCase testCase)
 	{
 		this.step = step;
 		this.data = data;
@@ -50,8 +47,15 @@ public class StepExecutor implements Executor
 		{
 			throw new StepException(step,e);
 		}
-		processorDAO = new ProcessorDAOImpl();
-		processorDAO.insertStepStatus(testCase.getTestCaseId(),flow.getFlowId(),step.getStepId(),"SUCCESS");
+		
+		QaResultTestCaseHome results = new QaResultTestCaseHome();
+		QaResultTestCase resultTestCase = new QaResultTestCase();
+		resultTestCase.setQaTestCase(testCase);
+		resultTestCase.setQaFlow(flow);
+		resultTestCase.setStatus("SUCCESS");
+		resultTestCase.setThreadId(Thread.currentThread().getName());
+		resultTestCase.setQaStep(step);
+		results.persist(resultTestCase);
 	}
 
 }

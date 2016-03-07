@@ -1,65 +1,71 @@
 package com.vzw.prepaid.executors;
 
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 import org.openqa.selenium.WebDriver;
 
-import com.vzw.prepaid.beans.Flow;
-import com.vzw.prepaid.beans.Step;
-import com.vzw.prepaid.beans.TestCase;
-import com.vzw.prepaid.beans.TestResult;
 import com.vzw.prepaid.comparators.StepComparator;
 import com.vzw.prepaid.dao.ProcessorDAO;
 import com.vzw.prepaid.dao.ProcessorDAOImpl;
+import com.vzw.prepaid.dao.generated.QaDepData;
+import com.vzw.prepaid.dao.generated.QaDepDataHome;
+import com.vzw.prepaid.dao.generated.QaDepDataId;
+import com.vzw.prepaid.dao.generated.QaFlow;
+import com.vzw.prepaid.dao.generated.QaFlowStepMap;
+import com.vzw.prepaid.dao.generated.QaStep;
+import com.vzw.prepaid.dao.generated.QaTestCase;
 import com.vzw.prepaid.exceptions.StepException;
 
 public class FlowExecutor implements Executor
 {
-	private TestCase testCase;
-	private Flow flow;
+	private QaTestCase testCase;
+	private QaFlow flow;
 	private WebDriver driver;
 	
-	FlowExecutor (TestCase testCase, Flow flow, WebDriver driver)
+	FlowExecutor (QaTestCase testCase, QaFlow flow, WebDriver driver)
 	{
 		this.testCase = testCase;
 		this.flow = flow;
 		this.driver = driver;
 	}
+	@SuppressWarnings("unchecked")
 	@Override
 	public void execute() throws Exception 
 	{
-		List<Step> steps = flow.getSteps();
-		Collections.sort(steps, new StepComparator());
-		String capturedData = null;
-		for(Step step : steps)
+		Set<QaFlowStepMap> set = flow.getQaFlowStepMapsForFlowId();
+		Set<QaFlowStepMap> flowToStepMap = new TreeSet<QaFlowStepMap>(new StepComparator());
+		flowToStepMap.addAll(set);
+		Iterator<QaFlowStepMap> itr = flowToStepMap.iterator();
+		while(itr.hasNext())
 		{
-			if(steps != null)
+			QaFlowStepMap eachMap = (QaFlowStepMap)itr.next();
+			QaStep currentStep = eachMap.getQaStepByStepId();
+			QaFlow dependentFlow = eachMap.getQaFlowByRefFlowId();
+			QaStep dependentStep = eachMap.getQaStepByRefStepId();
+			if(null != dependentFlow && null != dependentStep)
 			{
-				if(step.getRefFlowId() != 0 && step.getRefStepId()!= 0)
-				{
-					ProcessorDAO dao = new ProcessorDAOImpl();
-					capturedData = dao.getCapturedData(step.getRefFlowId(),step.getRefStepId());
-					step.getData().setDataValue(capturedData);
-				}
-				StepExecutor stepExecutor = new StepExecutor(step, step.getObject(),step.getData(),driver,flow,testCase);
-				try
-				{
-					stepExecutor.execute();
-				}
-				catch(StepException se)
-				{
-					throw se;
-				}
+				QaDepDataHome depDataHome = new QaDepDataHome();
+				QaDepDataId depDataId = new QaDepDataId();
+				depDataId.setDepId(Thread.currentThread().getName());
+				depDataId.setFlowId(dependentFlow.getFlowId());
+				depDataId.setStepId(dependentStep.getStepId());
+				QaDepData depData = depDataHome.findById(depDataId);
+				String dependentValue = depData.getDataValue();
+				currentStep.getQaData().setDataValue(dependentValue);//setting dep data value to current step
 			}
-		}
-	}
-	public void validate(Flow flow) throws StepException
-	{
-		List<TestResult> tests = flow.getTests();
-		for(TestResult test : tests)
-		{
-			
+			StepExecutor stepExecutor = new StepExecutor(currentStep, currentStep.getQaObject(),currentStep.getQaData(),driver,flow,testCase);
+			try
+			{
+				stepExecutor.execute();
+			}
+			catch(StepException se)
+			{
+				throw se;
+			}
 		}
 	}
 }

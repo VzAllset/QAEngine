@@ -84,9 +84,9 @@ public class QaTestCaseFlowMap implements java.io.Serializable {
 
 	@Override
 	public String toString() {
-		return "QaTestCaseFlowMap [testCaseFlowMapId=" + testCaseFlowMapId + ", qaFlow=" + qaFlow + ", qaTestCase="
-				+ qaTestCase + ", mappingDesc=" + mappingDesc + ", execSequence=" + execSequence + ", depFlow="
-				+ depFlow + "]";
+		return "QaTestCaseFlowMap [testCaseFlowMapId=" + testCaseFlowMapId + ", qaFlow=" + qaFlow + ", mappingDesc="
+				+ mappingDesc + ", execSequence=" + execSequence + ", depFlow=" + depFlow + "]";
 	}
+
 
 }
