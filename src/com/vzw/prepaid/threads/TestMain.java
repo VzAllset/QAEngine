@@ -15,7 +15,7 @@ public class TestMain
 		//HashMap<String,Object> result = initiator.initiate("1");
 		
 		/*Serial processing with more than one flow -  Amazon Login & Checkout */
-		HashMap<String,Object> result = initiator.initiate("5");
+		//HashMap<String,Object> result = initiator.initiate("5");
 		
 		/*Parallel processing each having different flows -  Flipkart Login + Amazon Login & Checkout */
 		//HashMap<String,Object> result = initiator.initiate("1,5");
@@ -24,7 +24,7 @@ public class TestMain
 		//HashMap<String,Object> result = initiator.initiate("3");
 		
 		/* Result generated from one flow can be fed as an input to another flow - JIRA create defect and use id generated to search in search flow */
-		//HashMap<String,Object> result = initiator.initiate("4");
+		HashMap<String,Object> result = initiator.initiate("4");
 		
 		/* Compatible with browsers IE & Firefox for now :P */
 

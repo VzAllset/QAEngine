@@ -2,14 +2,14 @@ package com.vzw.prepaid.factory;
 
 import org.openqa.selenium.WebDriver;
 
-import com.vzw.prepaid.beans.Data;
-import com.vzw.prepaid.beans.Object;
+import com.vzw.prepaid.dao.generated.QaData;
+import com.vzw.prepaid.dao.generated.QaObject;
 import com.vzw.prepaid.processor.WaitTillHiddenProcessor;
 import com.vzw.prepaid.testflow.CompareDataProcessor;
 import com.vzw.prepaid.testflow.TestExecutor;
 
 public class TestFactory {
-	public static TestExecutor getTestProcessor(String action,Object object,Data data,WebDriver driver)
+	public static TestExecutor getTestProcessor(String action,QaObject object,QaData data,WebDriver driver)
 	{
 		if(action != null)
 		{

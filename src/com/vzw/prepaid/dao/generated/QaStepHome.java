@@ -91,7 +91,7 @@ public class QaStepHome  extends BaseDAO {
 	public QaStep findById(long id) {
 		log.debug("getting QaStep instance with id: " + id);
 		try {
-			QaStep instance = (QaStep) sessionFactory.getCurrentSession().get("QaStep", id);
+			QaStep instance = (QaStep) sessionFactory.getCurrentSession().get("com.vzw.prepaid.dao.generated.QaStep", id);
 			if (instance == null) {
 				log.debug("get successful, no instance found");
 			} else {

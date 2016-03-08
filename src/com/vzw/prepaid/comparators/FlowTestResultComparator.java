@@ -1,13 +1,12 @@
 package com.vzw.prepaid.comparators;
 
 import java.util.Comparator;
-import com.vzw.prepaid.beans.TestResult;
+import com.vzw.prepaid.dao.generated.QaFlowTestMap;
 
-public class FlowTestResultComparator implements Comparator<TestResult>
+public class FlowTestResultComparator implements Comparator<QaFlowTestMap>
 {
 	@Override
-	public int compare(TestResult result1, TestResult result2) 
-	{
-		return Integer.valueOf(result1.getExecSequence()).compareTo(Integer.valueOf(result2.getExecSequence()));
+	public int compare(QaFlowTestMap map1, QaFlowTestMap map2) {
+		return map1.getExecSequence().compareTo(map2.getExecSequence());
 	}
 }

@@ -2,9 +2,6 @@ package com.vzw.prepaid.exceptions;
 
 import org.apache.commons.lang3.exception.ExceptionUtils;
 
-import com.vzw.prepaid.beans.Flow;
-import com.vzw.prepaid.beans.Step;
-import com.vzw.prepaid.beans.TestResult;
 import com.vzw.prepaid.dao.generated.QaFlow;
 import com.vzw.prepaid.dao.generated.QaStep;
 import com.vzw.prepaid.dao.generated.QaTestResult;

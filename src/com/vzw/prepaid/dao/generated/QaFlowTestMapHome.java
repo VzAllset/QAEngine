@@ -107,7 +107,7 @@ public class QaFlowTestMapHome  extends BaseDAO {
 	public List findByExample(QaFlowTestMap instance) {
 		log.debug("finding QaFlowTestMap instance by example");
 		try {
-			List results = sessionFactory.getCurrentSession().createCriteria("QaFlowTestMap")
+			List results = sessionFactory.getCurrentSession().createCriteria("com.vzw.prepaid.dao.generated.QaFlowTestMap")
 					.add(Example.create(instance)).list();
 			log.debug("find by example successful, result size: " + results.size());
 			return results;

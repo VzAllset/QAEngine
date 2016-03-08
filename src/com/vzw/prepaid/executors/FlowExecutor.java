@@ -1,16 +1,10 @@
 package com.vzw.prepaid.executors;
 
-import java.util.Collections;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
-
 import org.openqa.selenium.WebDriver;
-
 import com.vzw.prepaid.comparators.StepComparator;
-import com.vzw.prepaid.dao.ProcessorDAO;
-import com.vzw.prepaid.dao.ProcessorDAOImpl;
 import com.vzw.prepaid.dao.generated.QaDepData;
 import com.vzw.prepaid.dao.generated.QaDepDataHome;
 import com.vzw.prepaid.dao.generated.QaDepDataId;

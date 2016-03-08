@@ -91,7 +91,7 @@ public class QaTestSuiteHome  extends BaseDAO {
 	public QaTestSuite findById(long id) {
 		log.debug("getting QaTestSuite instance with id: " + id);
 		try {
-			sessionFactory.getCurrentSession().beginTransaction();
+			//sessionFactory.getCurrentSession().beginTransaction();
 			QaTestSuite instance = (QaTestSuite) sessionFactory.getCurrentSession().get("com.vzw.prepaid.dao.generated.QaTestSuite", id);
 			if (instance == null) {
 				log.debug("get successful, no instance found");

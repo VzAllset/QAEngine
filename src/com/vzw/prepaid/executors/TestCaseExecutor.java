@@ -2,7 +2,9 @@ package com.vzw.prepaid.executors;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 import org.apache.log4j.Logger;
@@ -11,17 +13,23 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import com.vzw.prepaid.commonUtils.Utils;
 import com.vzw.prepaid.comparators.FlowComparator;
+import com.vzw.prepaid.comparators.FlowTestResultComparator;
 import com.vzw.prepaid.configuration.PropertyConfigurator;
 import com.vzw.prepaid.dao.generated.QaFailure;
 import com.vzw.prepaid.dao.generated.QaFailureHome;
 import com.vzw.prepaid.dao.generated.QaFlow;
+import com.vzw.prepaid.dao.generated.QaFlowTestMap;
+import com.vzw.prepaid.dao.generated.QaFlowTestMapHome;
 import com.vzw.prepaid.dao.generated.QaResultTestCase;
 import com.vzw.prepaid.dao.generated.QaResultTestCaseHome;
 import com.vzw.prepaid.dao.generated.QaStep;
 import com.vzw.prepaid.dao.generated.QaStepHome;
 import com.vzw.prepaid.dao.generated.QaTestCase;
 import com.vzw.prepaid.dao.generated.QaTestCaseFlowMap;
+import com.vzw.prepaid.dao.generated.QaTestResult;
 import com.vzw.prepaid.exceptions.StepException;
+import com.vzw.prepaid.factory.TestFactory;
+import com.vzw.prepaid.testflow.TestExecutor;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
@@ -63,7 +71,25 @@ public class TestCaseExecutor implements Executor
 			{
 				flowExecutor.execute();
 				/* Tests for each flow code should come here */
-				//QaFlowTestMapHome flowTestMapHome = new QaFlowTestMapHome();
+				QaFlowTestMapHome flowTest = new QaFlowTestMapHome();
+				QaFlowTestMap testMap = new QaFlowTestMap();
+				testMap.setQaFlow(flow);
+				List<QaFlowTestMap> actualFlowTestMap = flowTest.findByExample(testMap);
+				Collections.sort(actualFlowTestMap, new FlowTestResultComparator());
+				Iterator<QaFlowTestMap> testIterator = actualFlowTestMap.iterator();
+				while(testIterator.hasNext())
+				{
+					boolean result = false;
+					QaFlowTestMap eachTest = (QaFlowTestMap)testIterator.next();
+					QaTestResult testFlow = eachTest.getQaTestResult();
+					TestExecutor testExecutor = TestFactory.getTestProcessor(testFlow.getAction(), testFlow.getQaObject(), testFlow.getQaData(), driver);
+					result = testExecutor.runTest();
+					if(!result)
+					{
+						throw new StepException (flow,testFlow);
+					}
+				}
+				/* actualFlowTestMap holds the currents tests to be performed for the current flow */
 				/* Tests for each flow code should come ends */
 			}
 			catch(StepException se)
